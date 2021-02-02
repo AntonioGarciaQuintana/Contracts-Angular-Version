@@ -90,7 +90,9 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 const environment = {
-    production: false
+    production: false,
+    url: 'localhost',
+    contracts: '/Contract'
 };
 
 
@@ -748,12 +750,16 @@ const routes = [
         },
         children: [
             {
+                path: 'catalogo',
+                loadChildren: () => Promise.all(/*! import() | views-Catalogos-catalogo-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~74bab4d4"), __webpack_require__.e("views-Catalogos-catalogo-module")]).then(__webpack_require__.bind(null, /*! ./views/Catalogos/catalogo.module */ "/DOo")).then(m => m.CatalogoModule)
+            },
+            {
                 path: 'base',
-                loadChildren: () => Promise.all(/*! import() | views-base-base-module */[__webpack_require__.e("default~views-base-base-module~views-buttons-buttons-module~views-dashboard-dashboard-module"), __webpack_require__.e("views-base-base-module")]).then(__webpack_require__.bind(null, /*! ./views/base/base.module */ "Cvcy")).then(m => m.BaseModule)
+                loadChildren: () => Promise.all(/*! import() | views-base-base-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~74bab4d4"), __webpack_require__.e("views-base-base-module")]).then(__webpack_require__.bind(null, /*! ./views/base/base.module */ "Cvcy")).then(m => m.BaseModule)
             },
             {
                 path: 'buttons',
-                loadChildren: () => Promise.all(/*! import() | views-buttons-buttons-module */[__webpack_require__.e("default~views-base-base-module~views-buttons-buttons-module~views-dashboard-dashboard-module"), __webpack_require__.e("views-buttons-buttons-module")]).then(__webpack_require__.bind(null, /*! ./views/buttons/buttons.module */ "Reju")).then(m => m.ButtonsModule)
+                loadChildren: () => Promise.all(/*! import() | views-buttons-buttons-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~74bab4d4"), __webpack_require__.e("views-buttons-buttons-module")]).then(__webpack_require__.bind(null, /*! ./views/buttons/buttons.module */ "Reju")).then(m => m.ButtonsModule)
             },
             {
                 path: 'charts',
@@ -761,7 +767,7 @@ const routes = [
             },
             {
                 path: 'dashboard',
-                loadChildren: () => Promise.all(/*! import() | views-dashboard-dashboard-module */[__webpack_require__.e("default~views-base-base-module~views-buttons-buttons-module~views-dashboard-dashboard-module"), __webpack_require__.e("default~views-dashboard-dashboard-module~views-theme-theme-module~views-widgets-widgets-module"), __webpack_require__.e("common"), __webpack_require__.e("views-dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ./views/dashboard/dashboard.module */ "6dU7")).then(m => m.DashboardModule)
+                loadChildren: () => Promise.all(/*! import() | views-dashboard-dashboard-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~74bab4d4"), __webpack_require__.e("default~views-dashboard-dashboard-module~views-theme-theme-module~views-widgets-widgets-module"), __webpack_require__.e("common"), __webpack_require__.e("views-dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ./views/dashboard/dashboard.module */ "6dU7")).then(m => m.DashboardModule)
             },
             {
                 path: 'icons',
@@ -813,8 +819,24 @@ const navItems = [
         icon: 'icon-speedometer',
         badge: {
             variant: 'info',
-            text: 'NEW'
+            text: ''
         }
+    },
+    {
+        title: true,
+        name: 'Catalogos'
+    },
+    {
+        name: 'catalogos',
+        url: '/catalogos',
+        icon: 'icon-puzzle',
+        children: [
+            {
+                name: 'Contratos',
+                url: '/catalogo/contracts',
+                icon: 'icon-puzzle'
+            }
+        ]
     },
     {
         title: true,
@@ -1037,22 +1059,22 @@ const navItems = [
             text: 'NEW'
         },
         attributes: { disabled: true },
-    },
-    {
-        name: 'Download CoreUI',
-        url: 'http://coreui.io/angular/',
-        icon: 'icon-cloud-download',
-        class: 'mt-auto',
-        variant: 'success',
-        attributes: { target: '_blank', rel: 'noopener' }
-    },
-    {
-        name: 'Try CoreUI PRO',
-        url: 'http://coreui.io/pro/angular/',
-        icon: 'icon-layers',
-        variant: 'danger',
-        attributes: { target: '_blank', rel: 'noopener' }
     }
+    // {
+    //   name: 'Download CoreUI',
+    //   url: 'http://coreui.io/angular/',
+    //   icon: 'icon-cloud-download',
+    //   class: 'mt-auto',
+    //   variant: 'success',
+    //   attributes: { target: '_blank', rel: 'noopener' }
+    // },
+    // {
+    //   name: 'Try CoreUI PRO',
+    //   url: 'http://coreui.io/pro/angular/',
+    //   icon: 'icon-layers',
+    //   variant: 'danger',
+    //   attributes: { target: '_blank', rel: 'noopener' }
+    // }
 ];
 
 

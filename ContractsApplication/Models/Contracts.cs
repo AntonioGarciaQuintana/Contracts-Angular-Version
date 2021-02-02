@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ContractsApplication.Util;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -29,18 +31,26 @@ namespace ContractsApplication.Models
         public string Location { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
+        [JsonConverter(typeof(JsonDateConverter))]
         public DateTime StartDate { get; set; }
 
         [Required]
-        public string EndDate { get; set; }
+        [DataType(DataType.Date)]
+        [JsonConverter(typeof(JsonDateConverter))]
+        public DateTime EndDate { get; set; }
 
         [StringLength(50)]
         public string Phone { get; set; }
 
         public string Description { get; set; }
 
+        [DataType(DataType.Date)]
+        [JsonConverter(typeof(JsonDateConverter))]
         public DateTime CreationDate { get; set; }
 
+        [DataType(DataType.Date)]
+        [JsonConverter(typeof(JsonDateConverter))]
         public DateTime LastUpdate { get; set; }
 
         public bool IsDelete { get; set; }

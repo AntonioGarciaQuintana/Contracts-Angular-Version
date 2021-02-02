@@ -1,6 +1,7 @@
 ﻿using ContractsApplication.Models;
 using ContractsApplication.Service.Interfaces;
-using ContractsApplication.Util;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,16 @@ using System.Web.Mvc;
 
 namespace ContractsApplication.Controllers
 {
+    
     public class ContractController : Controller
     {
         private readonly IContractService ContractService;
+        
+        JsonSerializerSettings microsoftDateFormatSettings = new JsonSerializerSettings
+        {
+            DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
+        };
+
 
         public ContractController(IContractService contractService)
         {
@@ -27,33 +35,50 @@ namespace ContractsApplication.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return Json(ApiResult.GetStructure(false, "", "Invalid model"), JsonRequestBehavior.AllowGet);
+                    return Json(false, JsonRequestBehavior.AllowGet);
                 }
 
                 ContractService.SaveOrUpdateContract(model);
-                return Json(ApiResult.GetStructure(true, "", "Model was saved successfully"), JsonRequestBehavior.AllowGet);
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-                return Json(ApiResult.GetStructure(false, "", e.Message), JsonRequestBehavior.AllowGet);
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
 
         }
 
         [HttpGet]
-        public JsonResult GetAllContracts()
+        public ActionResult GetPage(int page, int size, string sort, string search)
         {
-            var json = "";
             try
             {
-                var result = ContractService.GetAllContracts();
-                return Json(ApiResult.GetStructure(true, result), JsonRequestBehavior.AllowGet);
+                var result = ContractService.GetPages(page,size,sort,search);
+                string microsoftJson = JsonConvert.SerializeObject(result);
+                return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
             }
             catch (Exception e)
             {
-                return Json(ApiResult.GetStructure(false, "", e.Message), JsonRequestBehavior.AllowGet);
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpGet]
+        public ActionResult GetAllContracts()
+        {
+            try
+            {
+                var result = ContractService.GetAllContracts();
+                string microsoftJson = JsonConvert.SerializeObject(result);
+                return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
+            }
+            catch (Exception e)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
         // GET: Contract
         public ActionResult Index()
         {

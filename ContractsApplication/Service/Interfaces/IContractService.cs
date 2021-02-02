@@ -1,4 +1,5 @@
 ﻿using ContractsApplication.Models;
+using ContractsApplication.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace ContractsApplication.Service.Interfaces
         void DeleteContract(int id);
         IList<Contracts> GetAllContracts();
         Contracts GetContractById(int id);
+
+        DataTableDto<Contracts> GetPages(int page, int size, string sort, string search);
 
     }
 }

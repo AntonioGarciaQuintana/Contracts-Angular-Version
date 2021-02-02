@@ -1,4 +1,5 @@
 ﻿using ContractsApplication.Models;
+using ContractsApplication.Models.DTO;
 using ContractsApplication.Repository;
 using ContractsApplication.Service.Interfaces;
 using System;
@@ -38,6 +39,16 @@ namespace ContractsApplication.Service
         public Contracts GetContractById(int id)
         {
             return UnitOfWork.GetRepository<Contracts>().GetAll().FirstOrDefault(c => c.Id == id);
+        }
+
+        public DataTableDto<Contracts> GetPages(int page, int size, string sort, string search)
+        {
+            var dataTable = new DataTableDto<Contracts>();
+            var contractList = UnitOfWork.GetRepository<Contracts>().GetAll().ToList();
+            var total = contractList.Count();
+            dataTable.TotalElements = total;
+            dataTable.Data = contractList.Skip(page).Take(size).ToList();
+            return dataTable;
         }
 
         public void SaveOrUpdateContract(Contracts contract)

@@ -200,8 +200,13 @@
     <Compile Include="Migrations\202012140108287_updateStartDateColumnContract.designer.cs">
       <DependentUpon>202012140108287_updateStartDateColumnContract.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102010121106_change_datetimeType_Contract.cs" />
+    <Compile Include="Migrations\202102010121106_change_datetimeType_Contract.designer.cs">
+      <DependentUpon>202102010121106_change_datetimeType_Contract.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contracts.cs" />
+    <Compile Include="Models\DTO\DataTableDto.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Interfaces\IRepository.cs" />
@@ -212,7 +217,9 @@
     <Compile Include="Service\Interfaces\IContractService.cs" />
     <Compile Include="Service\Interfaces\ITestService.cs" />
     <Compile Include="Service\TestService.cs" />
-    <Compile Include="Util\ApiResult.cs" />
+    <Compile Include="Util\CustomDateTimeConverter.cs" />
+    <Compile Include="Util\CustomJavaScriptDateTimeConverter.cs" />
+    <Compile Include="Util\JsonDateConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -311,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012140108287_updateStartDateColumnContract.resx">
       <DependentUpon>202012140108287_updateStartDateColumnContract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102010121106_change_datetimeType_Contract.resx">
+      <DependentUpon>202102010121106_change_datetimeType_Contract.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
