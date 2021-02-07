@@ -204,6 +204,10 @@
     <Compile Include="Migrations\202102010121106_change_datetimeType_Contract.designer.cs">
       <DependentUpon>202102010121106_change_datetimeType_Contract.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102070124243_addedStringLengthDesription.cs" />
+    <Compile Include="Migrations\202102070124243_addedStringLengthDesription.designer.cs">
+      <DependentUpon>202102070124243_addedStringLengthDesription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contracts.cs" />
     <Compile Include="Models\DTO\DataTableDto.cs" />
@@ -321,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102010121106_change_datetimeType_Contract.resx">
       <DependentUpon>202102010121106_change_datetimeType_Contract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102070124243_addedStringLengthDesription.resx">
+      <DependentUpon>202102070124243_addedStringLengthDesription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

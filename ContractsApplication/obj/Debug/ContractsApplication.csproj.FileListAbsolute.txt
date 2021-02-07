@@ -393,3 +393,4 @@ C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\Contrac
 C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.dll
 C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.pdb
 C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.change_datetimeType_Contract.resources
+C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.addedStringLengthDesription.resources

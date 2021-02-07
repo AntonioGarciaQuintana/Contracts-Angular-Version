@@ -43,6 +43,7 @@ namespace ContractsApplication.Models
         [StringLength(50)]
         public string Phone { get; set; }
 
+        [StringLength(500)]
         public string Description { get; set; }
 
         [DataType(DataType.Date)]

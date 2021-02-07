@@ -18,4 +18,8 @@ export class commonService {
         const Gurl = `${this.urlContracts + '/GetAllContracts'}`;
         return this.http.get<any[]>(Gurl);
     }
+
+    onSaveContract(obj: any) {
+        return this.http.post<any>(this.urlContracts + (obj.Id === 0 ? '/SaveContract' : '/UpdateContract'), obj);
+    }
 }

@@ -98,6 +98,52 @@ const environment = {
 
 /***/ }),
 
+/***/ "B+sD":
+/*!**************************************************!*\
+  !*** ./src/app/Services/notification.service.ts ***!
+  \**************************************************/
+/*! exports provided: NotificationService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationService", function() { return NotificationService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "5eHb");
+
+
+
+let NotificationService = class NotificationService {
+    constructor(toastr) {
+        this.toastr = toastr;
+        this.title = 'Mensaje del sistema';
+    }
+    success(body) {
+        this.toastr.success(body, this.title);
+    }
+    error(body) {
+        this.toastr.error(body, this.title);
+    }
+    info(body) {
+        this.toastr.info(body, this.title);
+    }
+    warning(body) {
+        this.toastr.warning(body, this.title);
+    }
+};
+NotificationService.ctorParameters = () => [
+    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"] }
+];
+NotificationService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
+], NotificationService);
+
+
+
+/***/ }),
+
 /***/ "DodC":
 /*!****************************************************!*\
   !*** ./src/app/containers/default-layout/index.ts ***!
@@ -597,6 +643,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_bootstrap_dropdown__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-bootstrap/dropdown */ "FE24");
 /* harmony import */ var ngx_bootstrap_tabs__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ngx-bootstrap/tabs */ "2ZVE");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ng2-charts */ "hrfs");
+/* harmony import */ var _Services_notification_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Services/notification.service */ "B+sD");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ngx-toastr */ "5eHb");
 
 
 
@@ -624,6 +672,8 @@ const APP_CONTAINERS = [
 
 
 
+
+
 let AppModule = class AppModule {
 };
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -643,6 +693,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             ng2_charts__WEBPACK_IMPORTED_MODULE_17__["ChartsModule"],
             _coreui_icons_angular__WEBPACK_IMPORTED_MODULE_6__["IconModule"],
             _coreui_icons_angular__WEBPACK_IMPORTED_MODULE_6__["IconSetModule"].forRoot(),
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_19__["ToastrModule"].forRoot()
         ],
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
@@ -658,6 +709,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
                 useClass: _angular_common__WEBPACK_IMPORTED_MODULE_3__["HashLocationStrategy"]
             },
             _coreui_icons_angular__WEBPACK_IMPORTED_MODULE_6__["IconSetService"],
+            _Services_notification_service__WEBPACK_IMPORTED_MODULE_18__["NotificationService"]
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })

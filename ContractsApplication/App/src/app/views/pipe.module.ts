@@ -1,13 +1,16 @@
 import { NgModule } from "@angular/core";
 import { CyclePipe } from "../Pipe/Cycle.pipe";
+import { OnlyNumbersDirective } from "../Pipe/onlyNumber.directive";
 
 @NgModule({
     imports:[],
     declarations: [
-        CyclePipe
+        CyclePipe,
+        OnlyNumbersDirective
     ],
     exports: [
-        CyclePipe
+        CyclePipe,
+        OnlyNumbersDirective
     ]
 })
 export class ApplicationPipeModule {}

@@ -23,9 +23,9 @@ export class ContractsComponent implements OnInit {
 
 
     constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private commonService: commonService) { }
+        private _router: Router,
+        private _route: ActivatedRoute,
+        private _commonService: commonService) { }
 
 
     ngOnInit(): void {
@@ -39,7 +39,7 @@ export class ContractsComponent implements OnInit {
 
     getPage = (page: number) => {
         //this._spinnerService.show();
-        this.commonService.getPages(page, this.pageSize, this.sorting, this.filters.search).toPromise()
+        this._commonService.getPages(page, this.pageSize, this.sorting, this.filters.search).toPromise()
             .then(
                 result => {
                     const ret: any = result;
@@ -57,7 +57,7 @@ export class ContractsComponent implements OnInit {
     }
 
     getAllContracts = () => {
-        this.commonService.getAllContracts().toPromise().then(result => {
+        this._commonService.getAllContracts().toPromise().then(result => {
             this.contractsList = result;
         }).catch(error => {
             console.error(error);
@@ -66,9 +66,9 @@ export class ContractsComponent implements OnInit {
 
     goToRegister(idContract?: number) {
         if (idContract !== undefined) {
-            this.router.navigate(['/catalogo/contractregister', { id: idContract }], { relativeTo: this.route });
+            this._router.navigate(['/catalogo/contractregister', { id: idContract }], { relativeTo: this._route });
         } else {
-            this.router.navigate(['/catalogo/contractregister'], { relativeTo: this.route });
+            this._router.navigate(['/catalogo/contractregister'], { relativeTo: this._route });
         }
 
     }
