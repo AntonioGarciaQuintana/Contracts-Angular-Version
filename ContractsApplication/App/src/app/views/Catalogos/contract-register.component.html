@@ -4,8 +4,10 @@
       <!-- Nav tabs -->
       <tabset>
         <tab>
-          <ng-template tabHeading><i class="icon-folder"></i> Contrato &nbsp;<span
-              class="badge badge-success">Nuevo</span>
+          <ng-template tabHeading><i class="icon-folder"></i> Contrato &nbsp;
+            <span *ngIf="idContract === 0" class="badge badge-success">Nuevo</span>
+            <span *ngIf="idContract !== 0" class="badge badge-info">Editar</span>
+
           </ng-template>
           <div class="col-md-9">
             <div class="card">
@@ -31,7 +33,8 @@
                   <div class="form-group row">
                     <label for="ccnumber" class="col-md-3 col-form-label">Cantidad:</label>
                     <div class="col-md-9">
-                      <input type="text" class="form-control" appOnlyNumbers [aceptDecimal]="true" id="amont" formControlName="amountControl">
+                      <input type="text" class="form-control" appOnlyNumbers [aceptDecimal]="true" id="amont"
+                        formControlName="amountControl">
                     </div>
                   </div>
 
@@ -40,7 +43,8 @@
                   <div class="form-group row">
                     <label for="ccnumber" class="col-md-3 col-form-label">Ubicación</label>
                     <div class="col-md-9">
-                      <input type="text" class="form-control" id="ubicaiton" maxlength="200" formControlName="ubicationControl">
+                      <input type="text" class="form-control" id="ubicaiton" maxlength="200"
+                        formControlName="ubicationControl">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -50,21 +54,40 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="ccnumber" class="col-md-3 col-form-label">Fecha inicio del contrato</label>
+                    <label for="ccnumber" class="col-md-3 col-form-label">Fecha inicio del contrato editado</label>
                     <div class="col-md-9">
-                      <input type="date" class="form-control" id="startdate" formControlName="startDateControl">
+                      <div class="input-group">
+                        <input type="text" size="16" readonly [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}"
+                          #dp="bsDatepicker" placeholder="Seleccione una fecha" formControlName="startDateControl"
+                          class="form-control" bsDatepicker>
+                        <span class="input-group-append">
+                          <button class="btn btn-success" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen"><i
+                              class="fa fa-calendar" aria-hidden="true"></i></button>
+                        </span>
+                      </div>
+                      <!-- <input type="date" class="form-control" id="startdate" data-date-format="DD MMMM YYYY" formControlName="startDateControl"> -->
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="ccnumber" class="col-md-3 col-form-label">Fecha fin del contrato</label>
                     <div class="col-md-9">
-                      <input type="date" class="form-control" id="enddate" formControlName="endControl">
+                      <div class="input-group">
+                        <input type="text" size="16" readonly [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}"
+                          #dp="bsDatepicker" placeholder="Seleccione una fecha" formControlName="endControl"
+                          class="form-control" bsDatepicker>
+                        <span class="input-group-append">
+                          <button class="btn btn-success" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen"><i
+                              class="fa fa-calendar" aria-hidden="true"></i></button>
+                        </span>
+                      </div>
+                      <!-- <input type="date" class="form-control" id="enddate" formControlName="endControl"> -->
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="ccnumber" class="col-md-3 col-form-label">Descripción</label>
                     <div class="col-md-9">
-                      <textarea id="description" name="textarea-input" maxlength="500" rows="3" class="form-control" formControlName="descriptionControl"></textarea>
+                      <textarea id="description" name="textarea-input" maxlength="500" rows="3" class="form-control"
+                        formControlName="descriptionControl"></textarea>
                     </div>
                   </div>
                 </form>
@@ -99,3 +122,4 @@
     </div>
   </div>
 </div>
+

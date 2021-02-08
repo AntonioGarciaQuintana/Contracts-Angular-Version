@@ -20,6 +20,10 @@ export class commonService {
     }
 
     onSaveContract(obj: any) {
-        return this.http.post<any>(this.urlContracts + (obj.Id === 0 ? '/SaveContract' : '/UpdateContract'), obj);
+        return this.http.post<any>(this.urlContracts + '/SaveContract', obj);
+    }
+
+    getContract(id: number) {
+        return this.http.get<any>(this.urlContracts + '/GetContract' + '/' + id);
     }
 }

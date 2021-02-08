@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ngxLoadingAnimationTypes } from "ngx-loading";
 import { Contract } from "../../model/Contract";
 import { commonService } from "../../Services/common-service.service";
 
@@ -18,6 +19,11 @@ export class ContractsComponent implements OnInit {
     filters = {
         search: ''
     };
+
+    loading = false;
+    PrimaryRed = '#dd0031';
+    SecondaryBlue = '#006ddd';
+    public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
 
     contractsList: Contract[] = [];
 
@@ -38,15 +44,17 @@ export class ContractsComponent implements OnInit {
     }
 
     getPage = (page: number) => {
-        //this._spinnerService.show();
+        this.loading = true;
         this._commonService.getPages(page, this.pageSize, this.sorting, this.filters.search).toPromise()
             .then(
                 result => {
+                    this.loading = false;
                     const ret: any = result;
                     this.contractsList = ret.Data;
                     this.totalElements = ret.TotalElements;
                 }
             ).catch(error => {
+                this.loading = false;
                 console.log(error);
             });
     }

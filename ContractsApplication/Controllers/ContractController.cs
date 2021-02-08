@@ -64,6 +64,19 @@ namespace ContractsApplication.Controllers
         }
 
         [HttpGet]
+        public ActionResult GetContract(int id) {
+            try
+            {
+                var result = ContractService.GetContractById(id);
+                string microsoftJson = JsonConvert.SerializeObject(result);
+                return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
+            }
+            catch (Exception e) {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
         public ActionResult GetAllContracts()
         {
             try

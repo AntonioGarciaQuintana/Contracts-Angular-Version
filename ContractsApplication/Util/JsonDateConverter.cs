@@ -10,7 +10,7 @@ namespace ContractsApplication.Util
     {
         public JsonDateConverter()
         {
-            DateTimeFormat = "yyyy-MM-dd";
+            DateTimeFormat = "dd/MM/yyyy";
         }
     }
 }
