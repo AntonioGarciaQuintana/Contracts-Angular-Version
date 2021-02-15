@@ -13,6 +13,7 @@ namespace ContractsApplication.Context
 
         public IDbSet<Test> Tests { get; set; }
         public IDbSet<Contracts> Contracts { get; set; }
+        public IDbSet<ImageContract> ImagesContract { get; set; }
 
         public ModelContext() : base(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString)
         {

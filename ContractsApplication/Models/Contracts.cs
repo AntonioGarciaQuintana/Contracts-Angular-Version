@@ -16,34 +16,34 @@ namespace ContractsApplication.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please enter the Name")]
         [StringLength(150)]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage ="Please enter the Acres")]
+        [StringLength(50, ErrorMessage ="The Acres must be less than {1} characters.")]
         public string Acres { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please enter the Amount")]
         public double Amount { get; set; }
 
-        [StringLength(200)]
+        [StringLength(200, ErrorMessage = "The Location must be less than {1} characters.")]
         public string Location { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please enter the Start Date")]
         [DataType(DataType.Date)]
         [JsonConverter(typeof(JsonDateConverter))]
         public DateTime StartDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please enter the End Date")]
         [DataType(DataType.Date)]
         [JsonConverter(typeof(JsonDateConverter))]
         public DateTime EndDate { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "The Phone must be less than {1} characters.")]
         public string Phone { get; set; }
 
-        [StringLength(500)]
+        [StringLength(500, ErrorMessage = "The Description must be less than {1} characters.")]
         public string Description { get; set; }
 
         [DataType(DataType.Date)]
@@ -53,7 +53,7 @@ namespace ContractsApplication.Models
         [DataType(DataType.Date)]
         [JsonConverter(typeof(JsonDateConverter))]
         public DateTime LastUpdate { get; set; }
-
+        public List<ImageContract> Images { get; set; }
         public bool IsDelete { get; set; }
     }
 }

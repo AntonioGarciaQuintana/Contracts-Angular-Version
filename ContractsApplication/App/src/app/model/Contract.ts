@@ -4,8 +4,8 @@ export class Contract {
     Acres: string;
     Amount: number;
     Location: String;
-    StartDate: Date;
-    EndDate: Date;
+    StartDate: String;
+    EndDate: String;
     Phone: string;
     Description: string;
 }

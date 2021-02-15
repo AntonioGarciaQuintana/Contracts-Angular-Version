@@ -26,4 +26,13 @@ export class commonService {
     getContract(id: number) {
         return this.http.get<any>(this.urlContracts + '/GetContract' + '/' + id);
     }
+
+    cancelContract(id: number) {
+        return this.http.delete<void>(this.urlContracts + '/CancelContract' + '/' + id);
+    }
+
+    onSaveImageContract(obj: any) {
+        return this.http.post<any>(this.urlContracts + '/SaveImageContract', obj);
+    }
+    
 }

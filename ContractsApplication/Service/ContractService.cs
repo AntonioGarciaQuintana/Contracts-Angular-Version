@@ -44,11 +44,31 @@ namespace ContractsApplication.Service
         public DataTableDto<Contracts> GetPages(int page, int size, string sort, string search)
         {
             var dataTable = new DataTableDto<Contracts>();
-            var contractList = UnitOfWork.GetRepository<Contracts>().GetAll().ToList();
+            var contractList = UnitOfWork.GetRepository<Contracts>().GetAll()
+                .Where(x => (x.Id.ToString().Contains(search) || x.Name.Contains(search)) && x.IsDelete == false).ToList();
             var total = contractList.Count();
             dataTable.TotalElements = total;
             dataTable.Data = contractList.Skip(page).Take(size).ToList();
             return dataTable;
+        }
+
+        public void SaveImageContract(ImageContract imageContract)
+        {
+            var contract = GetContractById(imageContract.IdContract);
+
+            var image = new ImageContract();
+            image.Name = imageContract.Name;
+            image.Base = imageContract.Base;
+
+            if (contract.Images == null)
+            {
+                contract.Images = new List<ImageContract>();
+            }
+
+            contract.LastUpdate = DateTime.Now;
+            contract.Images.Add(image);
+            UnitOfWork.GetRepository<Contracts>().Update(contract);
+            UnitOfWork.SaveChanges();
         }
 
         public void SaveOrUpdateContract(Contracts contract)

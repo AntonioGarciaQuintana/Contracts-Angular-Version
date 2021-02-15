@@ -27,14 +27,18 @@
               "node_modules/simple-line-icons/dist/styles/simple-line-icons.css",
               "src/scss/style.scss",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/dropify/dist/css/dropify.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules"
               ]
             },
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/dropify/dist/js/dropify.js"
+            ],
             "allowedCommonJsDependencies": [
               "chart.js",
               "classnames"

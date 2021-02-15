@@ -10,11 +10,11 @@ using System.Web.Mvc;
 
 namespace ContractsApplication.Controllers
 {
-    
+
     public class ContractController : Controller
     {
         private readonly IContractService ContractService;
-        
+
         JsonSerializerSettings microsoftDateFormatSettings = new JsonSerializerSettings
         {
             DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
@@ -41,7 +41,7 @@ namespace ContractsApplication.Controllers
                 ContractService.SaveOrUpdateContract(model);
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
@@ -53,7 +53,7 @@ namespace ContractsApplication.Controllers
         {
             try
             {
-                var result = ContractService.GetPages(page,size,sort,search);
+                var result = ContractService.GetPages(page, size, sort, search);
                 string microsoftJson = JsonConvert.SerializeObject(result);
                 return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
             }
@@ -61,6 +61,13 @@ namespace ContractsApplication.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        [HttpDelete]
+        public ActionResult CancelContract(int id) {
+            ContractService.DeleteContract(id);
+            return Json(true);
+
         }
 
         [HttpGet]
@@ -71,7 +78,7 @@ namespace ContractsApplication.Controllers
                 string microsoftJson = JsonConvert.SerializeObject(result);
                 return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
             }
-            catch (Exception e) {
+            catch (Exception) {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
@@ -85,8 +92,20 @@ namespace ContractsApplication.Controllers
                 string microsoftJson = JsonConvert.SerializeObject(result);
                 return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
             }
-            catch (Exception e)
+            catch (Exception)
             {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SaveImageContract(ImageContract imageContract) {
+            try
+            {
+                ContractService.SaveImageContract(imageContract);
+                return Json(true);
+            }
+            catch (Exception e) {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }

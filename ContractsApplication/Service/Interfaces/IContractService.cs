@@ -17,5 +17,7 @@ namespace ContractsApplication.Service.Interfaces
 
         DataTableDto<Contracts> GetPages(int page, int size, string sort, string search);
 
+        void SaveImageContract(ImageContract imageContract);
+
     }
 }

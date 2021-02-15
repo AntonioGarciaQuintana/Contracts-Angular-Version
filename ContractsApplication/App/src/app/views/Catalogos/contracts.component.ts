@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ngxLoadingAnimationTypes } from "ngx-loading";
 import { Contract } from "../../model/Contract";
 import { commonService } from "../../Services/common-service.service";
+import { NotificationService } from "../../Services/notification.service";
 
 @Component({
     templateUrl: './contracts.component.html'
@@ -26,12 +27,15 @@ export class ContractsComponent implements OnInit {
     public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
 
     contractsList: Contract[] = [];
+    idContract = 0;
+    contractName ='';
 
 
     constructor(
         private _router: Router,
         private _route: ActivatedRoute,
-        private _commonService: commonService) { }
+        private _commonService: commonService,
+        private _notification: NotificationService) { }
 
 
     ngOnInit(): void {
@@ -79,6 +83,24 @@ export class ContractsComponent implements OnInit {
             this._router.navigate(['/catalogo/contractregister'], { relativeTo: this._route });
         }
 
+    }
+
+    onCleanFilter = () => {
+        this.filters = {
+            search: ''
+        };
+        this.firstPage();
+    }
+
+    onCancel = () => {
+        this._commonService.cancelContract(this.idContract).toPromise()
+            .then(result => {
+                this.firstPage();
+                this._notification.success('La contracto se ha cancelado correctamente');
+            }).catch(error => {
+                console.error(error);
+                this._notification.error('Ha ocurrido un error al cancelar el contrato');
+            });
     }
 
 }

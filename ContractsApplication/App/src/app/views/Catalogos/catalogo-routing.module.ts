@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from '@angular/router';
-import { ContractRegisterComponent } from "./contract-register.component";
+import { ContractManageComponent } from "./contract-manage.component";
 import { ContractsComponent } from "./contracts.component";
 const routes: Routes = [
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: 'contractregister',
-        component: ContractRegisterComponent,
+        component: ContractManageComponent,
         data: {
           title: 'Registro de Contratos'
         }

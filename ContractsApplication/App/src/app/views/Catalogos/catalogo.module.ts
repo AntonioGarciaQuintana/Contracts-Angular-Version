@@ -10,10 +10,11 @@ import { commonService } from "../../Services/common-service.service";
 import { NotificationService } from "../../Services/notification.service";
 import { ApplicationPipeModule } from "../pipe.module";
 import { CatalogoRoutingModule } from "./catalogo-routing.module";
-import { ContractRegisterComponent } from "./contract-register.component";
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ContractsComponent } from "./contracts.component";
 import { ModalModule } from "ngx-bootstrap/modal";
+import { ContractManageComponent } from "./contract-manage.component";
+import { ImportImageComponent } from "./import-image.component";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ModalModule } from "ngx-bootstrap/modal";
     ],
     declarations: [
         ContractsComponent,
-        ContractRegisterComponent
+        ContractManageComponent,
+        ImportImageComponent
     ],
     exports: [
 

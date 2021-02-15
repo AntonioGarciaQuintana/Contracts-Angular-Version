@@ -16,8 +16,8 @@
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                             class="fa fa-search"></i></span>
-                                </div><input class="form-control ng-untouched ng-pristine ng-valid" placeholder=""
-                                    type="text" maxlength="100" [(ngModel)]="filters.search">
+                                </div><input class="form-control ng-untouched ng-pristine ng-valid" placeholder="Filtrar por Nombre o ID"
+                                    type="text" maxlength="100" [(ngModel)]="filters.search" (keyup.enter)="firstPage()">
                             </div>
 
                         </div>
@@ -59,7 +59,7 @@
                             <td>{{contract.Amount}}</td>
                             <td>
                                 <button type="button" class="btn btn-info active" aria-pressed="true"
-                                    (click)="dangerModal.show();idContract=contract.Id;"><i
+                                    (click)="dangerModal.show();idContract=contract.Id;contractName=contract.Name;"><i
                                         class="fa fa-trash-o"></i></button>
                                 <button type="button" class="btn btn-info active" aria-pressed="true"
                                     (click)="goToRegister(contract.Id)"><i class="fa fa-pencil"></i></button>
@@ -87,11 +87,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <h5>Está seguro que desea eliminar el Contrato?</h5>
+        <h5>Está seguro que desea cancelar el Contrato de {{contractName}}?</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Cancelar</button>
-        <button type="button" class="btn btn-danger" (click)="onDelete();dangerModal.hide()">&nbsp;&nbsp;Sí
+        <button type="button" class="btn btn-danger" (click)="onCancel();dangerModal.hide()">&nbsp;&nbsp;Sí
           &nbsp;&nbsp;</button>
       </div>
     </div><!-- /.modal-content -->
