@@ -53,7 +53,7 @@ namespace ContractsApplication.Models
         [DataType(DataType.Date)]
         [JsonConverter(typeof(JsonDateConverter))]
         public DateTime LastUpdate { get; set; }
-        public List<ImageContract> Images { get; set; }
+        public virtual List<ImageContract> Images { get; set; }
         public bool IsDelete { get; set; }
     }
 }

@@ -54,7 +54,7 @@ namespace ContractsApplication.Controllers
             try
             {
                 var result = ContractService.GetPages(page, size, sort, search);
-                string microsoftJson = JsonConvert.SerializeObject(result);
+                string microsoftJson = JsonConvert.SerializeObject(result, Formatting.None,new JsonSerializerSettings(){ ReferenceLoopHandling = ReferenceLoopHandling.Ignore});
                 return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
             }
             catch (Exception e)
@@ -75,7 +75,7 @@ namespace ContractsApplication.Controllers
             try
             {
                 var result = ContractService.GetContractById(id);
-                string microsoftJson = JsonConvert.SerializeObject(result);
+                string microsoftJson = JsonConvert.SerializeObject(result, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                 return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
             }
             catch (Exception) {
@@ -89,7 +89,7 @@ namespace ContractsApplication.Controllers
             try
             {
                 var result = ContractService.GetAllContracts();
-                string microsoftJson = JsonConvert.SerializeObject(result);
+                string microsoftJson = JsonConvert.SerializeObject(result, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                 return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
             }
             catch (Exception)
@@ -110,6 +110,29 @@ namespace ContractsApplication.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult GetAllImageContracts(int idContract)
+        {
+            try
+            {
+                var result = ContractService.GetAllImagesContract(idContract);
+                string microsoftJson = JsonConvert.SerializeObject(result, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
+            }
+            catch (Exception e)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult DeleteImageContract(int idImage)
+        {
+            ContractService.DeleteImageContract(idImage);
+            return Json(true);
+
+        }
+        
 
         // GET: Contract
         public ActionResult Index()

@@ -17,6 +17,10 @@ namespace ContractsApplication.Service.Interfaces
 
         DataTableDto<Contracts> GetPages(int page, int size, string sort, string search);
 
+        List<ImageContract> GetAllImagesContract(int idContract);
+
+        void DeleteImageContract(int idImage);
+
         void SaveImageContract(ImageContract imageContract);
 
     }

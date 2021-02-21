@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ngxLoadingAnimationTypes } from "ngx-loading";
 import { Contract } from "../../model/Contract";
@@ -6,6 +6,7 @@ import { commonService } from "../../Services/common-service.service";
 import { NotificationService } from "../../Services/notification.service";
 
 @Component({
+    selector: 'app-contract-list',
     templateUrl: './contracts.component.html'
 })
 export class ContractsComponent implements OnInit {
@@ -28,8 +29,13 @@ export class ContractsComponent implements OnInit {
 
     contractsList: Contract[] = [];
     idContract = 0;
-    contractName ='';
+    contractName = '';
 
+    // disable butons functionality
+    @Input() disableEdit = false;
+    @Input() disableCancel = false;
+    @Input() disablePamentContract = true;
+    @Input() disablePamentWater = true;
 
     constructor(
         private _router: Router,

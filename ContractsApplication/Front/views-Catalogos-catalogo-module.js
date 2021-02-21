@@ -28,6 +28,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-bootstrap/modal */ "K3ix");
 /* harmony import */ var _contract_manage_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./contract-manage.component */ "iPFL");
 /* harmony import */ var _import_image_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./import-image.component */ "YJ9z");
+/* harmony import */ var ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ngx-bootstrap/tooltip */ "Mfq2");
+/* harmony import */ var _contract_resume_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./contract-resume.component */ "9wPd");
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ng2-charts */ "hrfs");
+/* harmony import */ var _contract_register_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./contract-register.component */ "NPdu");
+
+
+
+
 
 
 
@@ -58,16 +66,20 @@ CatalogoModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _pipe_module__WEBPACK_IMPORTED_MODULE_11__["ApplicationPipeModule"],
             ngx_pagination__WEBPACK_IMPORTED_MODULE_7__["NgxPaginationModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
+            ng2_charts__WEBPACK_IMPORTED_MODULE_20__["ChartsModule"],
             ngx_bootstrap_tabs__WEBPACK_IMPORTED_MODULE_5__["TabsModule"].forRoot(),
             ngx_toastr__WEBPACK_IMPORTED_MODULE_8__["ToastrModule"].forRoot(),
             ngx_loading__WEBPACK_IMPORTED_MODULE_6__["NgxLoadingModule"].forRoot({}),
             ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_13__["BsDatepickerModule"].forRoot(),
             ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_15__["ModalModule"].forRoot(),
+            ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_18__["TooltipModule"].forRoot()
         ],
         declarations: [
             _contracts_component__WEBPACK_IMPORTED_MODULE_14__["ContractsComponent"],
             _contract_manage_component__WEBPACK_IMPORTED_MODULE_16__["ContractManageComponent"],
-            _import_image_component__WEBPACK_IMPORTED_MODULE_17__["ImportImageComponent"]
+            _import_image_component__WEBPACK_IMPORTED_MODULE_17__["ImportImageComponent"],
+            _contract_resume_component__WEBPACK_IMPORTED_MODULE_19__["ContractResumeComponent"],
+            _contract_register_component__WEBPACK_IMPORTED_MODULE_21__["ContractRegisterComponent"]
         ],
         exports: [],
         providers: [
@@ -256,7 +268,7 @@ class Contract {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"animated fadeIn\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12 mb-6\">\r\n      <!-- Nav tabs -->\r\n      <tabset>\r\n        <tab>\r\n          <ng-template tabHeading><i class=\"icon-folder\"></i> Contrato &nbsp;\r\n            <span *ngIf=\"idContract === 0\" class=\"badge badge-success\">Nuevo</span>\r\n            <span *ngIf=\"idContract !== 0\" class=\"badge badge-info\">Editar</span>\r\n\r\n          </ng-template>\r\n          <div class=\"col-md-9\">\r\n            <div class=\"card\">\r\n              <div class=\"card-header\">\r\n                <strong>Campos del contrato</strong>\r\n                <!-- <small>Form</small> -->\r\n              </div>\r\n              <div class=\"card-body\">\r\n                <form [formGroup]=\"contractForm\" autocomplete=\"off\">\r\n                  <div class=\"form-group row\">\r\n                    <label for=\"name\" class=\"col-md-3 col-form-label\">Nombre del Rentador:</label>\r\n                    <div class=\"col-md-9\">\r\n                      <input type=\"text\" class=\"form-control\" id=\"name\" maxlength=\"150\" formControlName=\"nameControl\">\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">No. Hectáreas:</label>\r\n                    <div class=\"col-md-9\">\r\n                      <input type=\"text\" class=\"form-control\" id=\"acres\" maxlength=\"50\" formControlName=\"acresControl\">\r\n                    </div>\r\n\r\n                  </div>\r\n                  <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Cantidad:</label>\r\n                    <div class=\"col-md-9\">\r\n                      <input type=\"text\" class=\"form-control\" appOnlyNumbers [aceptDecimal]=\"true\" id=\"amont\"\r\n                        formControlName=\"amountControl\">\r\n                    </div>\r\n                  </div>\r\n\r\n\r\n\r\n                  <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Ubicación</label>\r\n                    <div class=\"col-md-9\">\r\n                      <input type=\"text\" class=\"form-control\" id=\"ubicaiton\" maxlength=\"200\"\r\n                        formControlName=\"ubicationControl\">\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Teléfono</label>\r\n                    <div class=\"col-md-9\">\r\n                      <input type=\"text\" class=\"form-control\" id=\"phone\" maxlength=\"50\" formControlName=\"phoneControl\">\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Fecha inicio del contrato editado</label>\r\n                    <div class=\"col-md-9\">\r\n                      <div class=\"input-group\">\r\n                        <input type=\"text\" size=\"16\" readonly [bsConfig]=\"{ dateInputFormat: 'DD/MM/YYYY'}\"\r\n                          #dp=\"bsDatepicker\" placeholder=\"Seleccione una fecha\" formControlName=\"startDateControl\"\r\n                          class=\"form-control\" bsDatepicker>\r\n                        <span class=\"input-group-append\">\r\n                          <button class=\"btn btn-success\" (click)=\"dp.toggle()\" [attr.aria-expanded]=\"dp.isOpen\"><i\r\n                              class=\"fa fa-calendar\" aria-hidden=\"true\"></i></button>\r\n                        </span>\r\n                      </div>\r\n                      <!-- <input type=\"date\" class=\"form-control\" id=\"startdate\" data-date-format=\"DD MMMM YYYY\" formControlName=\"startDateControl\"> -->\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Fecha fin del contrato</label>\r\n                    <div class=\"col-md-9\">\r\n                      <div class=\"input-group\">\r\n                        <input type=\"text\" size=\"16\" readonly [bsConfig]=\"{ dateInputFormat: 'DD/MM/YYYY'}\"\r\n                          #dp=\"bsDatepicker\" placeholder=\"Seleccione una fecha\" formControlName=\"endControl\"\r\n                          class=\"form-control\" bsDatepicker>\r\n                        <span class=\"input-group-append\">\r\n                          <button class=\"btn btn-success\" (click)=\"dp.toggle()\" [attr.aria-expanded]=\"dp.isOpen\"><i\r\n                              class=\"fa fa-calendar\" aria-hidden=\"true\"></i></button>\r\n                        </span>\r\n                      </div>\r\n                      <!-- <input type=\"date\" class=\"form-control\" id=\"enddate\" formControlName=\"endControl\"> -->\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Descripción</label>\r\n                    <div class=\"col-md-9\">\r\n                      <textarea id=\"description\" name=\"textarea-input\" maxlength=\"500\" rows=\"3\" class=\"form-control\"\r\n                        formControlName=\"descriptionControl\"></textarea>\r\n                    </div>\r\n                  </div>\r\n                </form>\r\n              </div>\r\n              <div class=\"card-footer\">\r\n                <button type=\"submit\" class=\"btn btn-primary float-right\" style=\"margin-left: 9px\" (click)=\"onSave()\"\r\n                  [disabled]=\"contractForm.invalid || disableButtonSave\"><i class=\"fa fa-dot-circle-o\"></i>\r\n                  Guardar</button>\r\n                <button type=\"reset\" class=\"btn btn-danger float-right\" (click)=\"back()\"><i class=\"fa fa-ban\"></i>\r\n                  Cancelar</button>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </tab>\r\n        <tab *ngIf=\"idContract !== 0\">\r\n          <ng-template tabHeading><i class=\"icon-cloud-upload\"></i> Adjuntar imagen</ng-template>\r\n          <import-image [idContract]=\"idContract\"></import-image>\r\n\r\n        </tab>\r\n        <tab *ngIf=\"idContract !== 0\">\r\n          <ng-template tabHeading><i class=\"icon-pie-chart\"></i> Resumen</ng-template>\r\n          4. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et\r\n          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\r\n          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat\r\n          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\r\n          id est laborum.\r\n        </tab>\r\n      </tabset>\r\n    </div>\r\n  </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"animated fadeIn\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12 mb-6\">\r\n      <!-- Nav tabs -->\r\n      <tabset>\r\n        <tab>\r\n          <ng-template tabHeading><i class=\"icon-folder\"></i> Contrato &nbsp;\r\n            <span *ngIf=\"idContract === 0\" class=\"badge badge-success\">Nuevo</span>\r\n            <span *ngIf=\"idContract !== 0\" class=\"badge badge-info\">Editar</span>\r\n          </ng-template>\r\n          <app-conctract-register [idContract]=\"idContract\"></app-conctract-register>\r\n        </tab>\r\n        <tab *ngIf=\"idContract !== 0\">\r\n          <ng-template tabHeading><i class=\"icon-cloud-upload\"></i> Adjuntar imagen</ng-template>\r\n          <import-image [idContract]=\"idContract\"></import-image>\r\n\r\n        </tab>\r\n        <tab *ngIf=\"idContract !== 0\">\r\n          <ng-template tabHeading><i class=\"icon-pie-chart\"></i> Resumen</ng-template>\r\n          <app-resume-contract></app-resume-contract>\r\n        </tab>\r\n      </tabset>\r\n    </div>\r\n  </div>\r\n</div>");
 
 /***/ }),
 
@@ -286,6 +298,14 @@ let commonService = class commonService {
             const Gurl = `${this.urlContracts + '/GetAllContracts'}`;
             return this.http.get(Gurl);
         };
+        this.getAllImagesContracts = (idContract) => {
+            const Gurl = `${this.urlContracts + '/GetAllImageContracts'}/?idContract=${idContract}`;
+            return this.http.get(Gurl);
+        };
+        this.onDeleteImageContract = (idImage) => {
+            const Gurl = `${this.urlContracts + '/DeleteImageContract'}/?idImage=${idImage}`;
+            return this.http.delete(Gurl);
+        };
     }
     getPages(page, size, sort, search) {
         const Gurl = `${this.urlContracts + '/GetPage'}/?page=${page}&size=${size}&sort=${sort}&search=${search}`;
@@ -311,6 +331,115 @@ commonService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
 ], commonService);
+
+
+
+/***/ }),
+
+/***/ "9wPd":
+/*!**************************************************************!*\
+  !*** ./src/app/views/Catalogos/contract-resume.component.ts ***!
+  \**************************************************************/
+/*! exports provided: ContractResumeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContractResumeComponent", function() { return ContractResumeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _raw_loader_contract_resume_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./contract-resume.component.html */ "m0pO");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+
+
+
+let ContractResumeComponent = class ContractResumeComponent {
+    constructor() {
+        // lineChart
+        this.lineChartData = [
+            { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
+            { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
+        ];
+        this.lineChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+        this.lineChartOptions = {
+            animation: false,
+            responsive: true
+        };
+        this.lineChartColours = [
+            {
+                backgroundColor: 'rgba(148,159,177,0.2)',
+                borderColor: 'rgba(148,159,177,1)',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            },
+            {
+                backgroundColor: 'rgba(77,83,96,0.2)',
+                borderColor: 'rgba(77,83,96,1)',
+                pointBackgroundColor: 'rgba(77,83,96,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(77,83,96,1)'
+            },
+            {
+                backgroundColor: 'rgba(148,159,177,0.2)',
+                borderColor: 'rgba(148,159,177,1)',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            }
+        ];
+        this.lineChartLegend = true;
+        this.lineChartType = 'line';
+        // barChart
+        this.barChartOptions = {
+            scaleShowVerticalLines: false,
+            responsive: true
+        };
+        this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+        this.barChartType = 'bar';
+        this.barChartLegend = true;
+        this.barChartData = [
+            { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+        ];
+        // Doughnut
+        this.doughnutChartLabels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+        this.doughnutChartData = [350, 450, 100];
+        this.doughnutChartType = 'doughnut';
+        // Radar
+        this.radarChartLabels = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
+        this.radarChartData = [
+            { data: [65, 59, 90, 81, 56, 55, 40], label: 'Series A' },
+            { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' }
+        ];
+        this.radarChartType = 'radar';
+        // Pie
+        this.pieChartLabels = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
+        this.pieChartData = [300, 500, 100];
+        this.pieChartType = 'pie';
+        // PolarArea
+        this.polarAreaChartLabels = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
+        this.polarAreaChartData = [300, 500, 100, 40, 120];
+        this.polarAreaLegend = true;
+        this.polarAreaChartType = 'polarArea';
+    }
+    // events
+    chartClicked(e) {
+        console.log(e);
+    }
+    chartHovered(e) {
+        console.log(e);
+    }
+};
+ContractResumeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+        selector: 'app-resume-contract',
+        template: _raw_loader_contract_resume_component_html__WEBPACK_IMPORTED_MODULE_1__["default"]
+    })
+], ContractResumeComponent);
 
 
 
@@ -362,6 +491,11 @@ let ContractsComponent = class ContractsComponent {
         this.contractsList = [];
         this.idContract = 0;
         this.contractName = '';
+        // disable butons functionality
+        this.disableEdit = false;
+        this.disableCancel = false;
+        this.disablePamentContract = true;
+        this.disablePamentWater = true;
         this.firstPage = () => {
             this.currentPage = 0;
             this.getPage(this.currentPage);
@@ -425,8 +559,15 @@ ContractsComponent.ctorParameters = () => [
     { type: _Services_common_service_service__WEBPACK_IMPORTED_MODULE_5__["commonService"] },
     { type: _Services_notification_service__WEBPACK_IMPORTED_MODULE_6__["NotificationService"] }
 ];
+ContractsComponent.propDecorators = {
+    disableEdit: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"] }],
+    disableCancel: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"] }],
+    disablePamentContract: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"] }],
+    disablePamentWater: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"] }]
+};
 ContractsComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+        selector: 'app-contract-list',
         template: _raw_loader_contracts_component_html__WEBPACK_IMPORTED_MODULE_1__["default"]
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
@@ -2699,121 +2840,141 @@ ApplicationPipeModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-12\">\r\n        <ngx-loading [show]=\"loading\"\r\n            [config]=\"{animationType: ngxLoadingAnimationTypes.wanderingCubes, primaryColour: PrimaryRed, secondaryColour: SecondaryBlue, backdropBorderRadius: '3px'}\"\r\n            [template]=\"loadingTemplate\"></ngx-loading>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                <i class=\"fa fa-align-justify\"></i> Lista de contratos\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <h5>Filtros de búsqueda</h5>\r\n                <div class=\"row\">\r\n                    <div class=\"col-md-12 offset-md-12\">\r\n                        <div class=\"form-group\">\r\n                            <label for=\"nf-email\">Campo de búsqueda</label>\r\n                            <div class=\"input-group\">\r\n                                <div class=\"input-group-prepend\"><span class=\"input-group-text\"><i\r\n                                            class=\"fa fa-search\"></i></span>\r\n                                </div><input class=\"form-control ng-untouched ng-pristine ng-valid\" placeholder=\"Filtrar por Nombre o ID\"\r\n                                    type=\"text\" maxlength=\"100\" [(ngModel)]=\"filters.search\" (keyup.enter)=\"firstPage()\">\r\n                            </div>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"col-md-6\">\r\n                        <button type=\"button\" class=\"btn btn-info active\" aria-pressed=\"true\"\r\n                            (click)=\"goToRegister()\"><i class=\"fa fa-plus-square-o\"></i> &nbsp;\r\n                            Nuevo</button>\r\n                    </div>\r\n                    <div class=\"col-md-6\">\r\n                        <button type=\"button\" (click)=\"firstPage();\" class=\"btn btn-info active float-right\"\r\n                            aria-pressed=\"true\" style=\"margin-left: 9px;\"><i\r\n                                class=\"fa fa-hand-o-right\"></i>&nbsp;Filtrar</button>\r\n                        <button type=\"button\" class=\"btn btn-info active float-right\" (click)=\"onCleanFilter();\"\r\n                            aria-pressed=\"true\"><i class=\"fa fa-filter\"></i>&nbsp;Limpiar</button>\r\n                    </div>\r\n                </div>\r\n                <br />\r\n                <table class=\"table table-bordered\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th>#</th>\r\n                            <th>Nombre</th>\r\n                            <th>Ciclo</th>\r\n                            <th>No. Hectáreas</th>\r\n                            <th>Precio</th>\r\n                            <th>Acciones</th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr\r\n                            *ngFor=\"let contract of contractsList | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalElements }\">\r\n                            <td>{{contract.Id}}</td>\r\n                            <td>{{contract.Name}}</td>\r\n                            <td>{{contract.StartDate}} al {{contract.EndDate}}</td>\r\n                            <td>{{contract.Acres}}</td>\r\n                            <td>{{contract.Amount}}</td>\r\n                            <td>\r\n                                <button type=\"button\" class=\"btn btn-info active\" aria-pressed=\"true\"\r\n                                    (click)=\"dangerModal.show();idContract=contract.Id;contractName=contract.Name;\"><i\r\n                                        class=\"fa fa-trash-o\"></i></button>\r\n                                <button type=\"button\" class=\"btn btn-info active\" aria-pressed=\"true\"\r\n                                    (click)=\"goToRegister(contract.Id)\"><i class=\"fa fa-pencil\"></i></button>\r\n                                <!-- <span class=\"badge badge-success\">Active</span> -->\r\n                            </td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n                <br />\r\n                <pagination-controls (pageChange)=\"currentPage = $event\" previousLabel=\"Anterior\" nextLabel=\"Siguiente\"\r\n                    (pageChange)=\"pageChanged($event)\"></pagination-controls>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div bsModal #dangerModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n  aria-hidden=\"true\">\r\n  <div class=\"modal-dialog modal-danger\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h4 class=\"modal-title\">Mensaje del sistema</h4>\r\n        <button type=\"button\" class=\"close\" (click)=\"dangerModal.hide()\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <h5>Está seguro que desea cancelar el Contrato de {{contractName}}?</h5>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"dangerModal.hide()\">Cancelar</button>\r\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"onCancel();dangerModal.hide()\">&nbsp;&nbsp;Sí\r\n          &nbsp;&nbsp;</button>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-12\">\r\n        <ngx-loading [show]=\"loading\"\r\n            [config]=\"{animationType: ngxLoadingAnimationTypes.wanderingCubes, primaryColour: PrimaryRed, secondaryColour: SecondaryBlue, backdropBorderRadius: '3px'}\"\r\n            [template]=\"loadingTemplate\"></ngx-loading>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                <i class=\"fa fa-align-justify\"></i> Lista de contratos\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <h5>Filtros de búsqueda</h5>\r\n                <div class=\"row\">\r\n                    <div class=\"col-md-12 offset-md-12\">\r\n                        <div class=\"form-group\">\r\n                            <label for=\"nf-email\">Campo de búsqueda</label>\r\n                            <div class=\"input-group\">\r\n                                <div class=\"input-group-prepend\"><span class=\"input-group-text\"><i\r\n                                            class=\"fa fa-search\"></i></span>\r\n                                </div><input class=\"form-control ng-untouched ng-pristine ng-valid\"\r\n                                    placeholder=\"Filtrar por Nombre o ID\" type=\"text\" maxlength=\"100\"\r\n                                    [(ngModel)]=\"filters.search\" (keyup.enter)=\"firstPage()\">\r\n                            </div>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"col-md-6\">\r\n                        <button type=\"button\" class=\"btn btn-info active\" tooltip=\"Click para guardar un nuevo contrato\"\r\n                            aria-pressed=\"true\" (click)=\"goToRegister()\"><i class=\"fa fa-plus-square-o\"></i> &nbsp;\r\n                            Nuevo</button>\r\n                    </div>\r\n                    <div class=\"col-md-6\">\r\n                        <button type=\"button\" (click)=\"firstPage();\" tooltip=\"Click para filtrar\"\r\n                            class=\"btn btn-info active float-right\" aria-pressed=\"true\" style=\"margin-left: 9px;\"><i\r\n                                class=\"fa fa-hand-o-right\"></i>&nbsp;Filtrar</button>\r\n                        <button type=\"button\" class=\"btn btn-info active float-right\"\r\n                            tooltip=\"Click para limpiar los campos de busqueda\" (click)=\"onCleanFilter();\"\r\n                            aria-pressed=\"true\"><i class=\"fa fa-filter\"></i>&nbsp;Limpiar</button>\r\n                    </div>\r\n                </div>\r\n                <br />\r\n                <table class=\"table table-bordered\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th>#</th>\r\n                            <th>Nombre</th>\r\n                            <th>Ciclo</th>\r\n                            <th>No. Hectáreas</th>\r\n                            <th>Precio</th>\r\n                            <th>Acciones</th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr\r\n                            *ngFor=\"let contract of contractsList | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalElements }\">\r\n                            <td>{{contract.Id}}</td>\r\n                            <td>{{contract.Name}}</td>\r\n                            <td>{{contract.StartDate}} al {{contract.EndDate}}</td>\r\n                            <td>{{contract.Acres}}</td>\r\n                            <td>{{contract.Amount}}</td>\r\n                            <td>\r\n                                <button *ngIf=\"!disableCancel\" type=\"button\" class=\"btn btn-info active\"\r\n                                    tooltip=\"Click para cancelar el contrato\" aria-pressed=\"true\"\r\n                                    (click)=\"dangerModal.show();idContract=contract.Id;contractName=contract.Name;\"><i\r\n                                        class=\"fa fa-trash-o\"></i></button>\r\n                                <button *ngIf=\"!disableEdit\" type=\"button\" class=\"btn btn-info active\"\r\n                                    tooltip=\"Click para editar el contrato\" aria-pressed=\"true\"\r\n                                    (click)=\"goToRegister(contract.Id)\"><i class=\"fa fa-pencil\"></i></button>\r\n                                <button *ngIf=\"!disablePamentContract\" type=\"button\" class=\"btn btn-info active\"\r\n                                    tooltip=\"Click para registar pago renta\" aria-pressed=\"true\"\r\n                                    (click)=\"goToRegister(contract.Id)\"><i class=\"fa cil-money \"></i></button>\r\n                                <button *ngIf=\"!disablePamentWater\" type=\"button\" class=\"btn btn-info active\"\r\n                                    tooltip=\"Click para registar pago de agua\" aria-pressed=\"true\"\r\n                                    (click)=\"goToRegister(contract.Id)\"><i class=\"fa cil-pool active\"></i></button>\r\n                                \r\n\r\n                                \r\n                                <!-- <span class=\"badge badge-success\">Active</span> -->\r\n                            </td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n                <br />\r\n                <pagination-controls (pageChange)=\"currentPage = $event\" previousLabel=\"Anterior\" nextLabel=\"Siguiente\"\r\n                    (pageChange)=\"pageChanged($event)\"></pagination-controls>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div bsModal #dangerModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog modal-danger\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h4 class=\"modal-title\">Mensaje del sistema</h4>\r\n                <button type=\"button\" class=\"close\" (click)=\"dangerModal.hide()\" aria-label=\"Close\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <h5>Está seguro que desea cancelar el Contrato de {{contractName}}?</h5>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-secondary\" (click)=\"dangerModal.hide()\">Cancelar</button>\r\n                <button type=\"button\" class=\"btn btn-danger\" (click)=\"onCancel();dangerModal.hide()\">&nbsp;&nbsp;Sí\r\n                    &nbsp;&nbsp;</button>\r\n            </div>\r\n        </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->");
 
 /***/ }),
 
-/***/ "RWcO":
-/*!*****************************************************************************************!*\
-  !*** ./node_modules/ngx-bootstrap/__ivy_ngcc__/locale/fesm2015/ngx-bootstrap-locale.js ***!
-  \*****************************************************************************************/
-/*! exports provided: arLocale, bgLocale, caLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, etLocale, fiLocale, frLocale, glLocale, heLocale, hiLocale, hrLocale, huLocale, idLocale, itLocale, jaLocale, kaLocale, kkLocale, koLocale, ltLocale, lvLocale, mnLocale, nbLocale, nlBeLocale, nlLocale, plLocale, ptBrLocale, roLocale, ruLocale, skLocale, slLocale, sqLocale, svLocale, thBeLocale, thLocale, trLocale, ukLocale, viLocale, zhCnLocale */
+/***/ "NPdu":
+/*!****************************************************************!*\
+  !*** ./src/app/views/Catalogos/contract-register.component.ts ***!
+  \****************************************************************/
+/*! exports provided: ContractRegisterComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ngx-bootstrap/chronos */ "U9ZV");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "arLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["arLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "bgLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["bgLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "caLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["caLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "csLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["csLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "daLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["daLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "deLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["deLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "enGbLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["enGbLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "esDoLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["esDoLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "esLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["esLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "esUsLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["esUsLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "etLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["etLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fiLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["fiLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "frLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["frLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "glLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["glLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "heLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["heLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "hiLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["hiLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "hrLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["hrLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "huLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["huLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "idLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["idLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "itLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["itLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "jaLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["jaLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "kaLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["kaLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "kkLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["kkLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "koLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["koLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ltLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["ltLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "lvLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["lvLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mnLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["mnLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "nbLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["nbLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "nlBeLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["nlBeLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "nlLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["nlLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "plLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["plLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ptBrLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["ptBrLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "roLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["roLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ruLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["ruLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "skLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["skLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "slLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["slLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["sqLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "svLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["svLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "thBeLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["thBeLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "thLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["thLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "trLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["trLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ukLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["ukLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "viLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["viLocale"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "zhCnLocale", function() { return ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_0__["zhCnLocale"]; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContractRegisterComponent", function() { return ContractRegisterComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _raw_loader_contract_register_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./contract-register.component.html */ "mnCy");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "s7LF");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "iInd");
+/* harmony import */ var ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-bootstrap/chronos */ "U9ZV");
+/* harmony import */ var ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-bootstrap/datepicker */ "hzby");
+/* harmony import */ var _model_Contract__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../model/Contract */ "2xLn");
+/* harmony import */ var _Services_common_service_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Services/common-service.service */ "7DoW");
+/* harmony import */ var _Services_notification_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Services/notification.service */ "B+sD");
 
 
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
-//# sourceMappingURL=ngx-bootstrap-locale.js.map
+
+
+
+
+
+let ContractRegisterComponent = class ContractRegisterComponent {
+    constructor(_router, _route, _commonService, _notification, localeService) {
+        this._router = _router;
+        this._route = _route;
+        this._commonService = _commonService;
+        this._notification = _notification;
+        this.localeService = localeService;
+        this.disableButtonSave = false;
+        this.idContract = 0;
+        this.reset = () => {
+            this.idContract = 0;
+            this.contractForm.reset();
+        };
+        this.onSave = () => {
+            const contract = this.getContractObject();
+            this.disableButtonSave = true;
+            this._commonService.onSaveContract(contract).toPromise()
+                .then(result => {
+                this.back();
+                this._notification.success('El contrato se guardó Correctamente');
+            }).catch(error => {
+                this._notification.error('Ha ocurrido un error al guardar el contrato');
+            });
+        };
+        this.getContract = (id) => {
+            this._commonService.getContract(id)
+                .subscribe(result => {
+                this.setContract(result);
+            });
+        };
+        this.setContract = (contract) => {
+            this.f['nameControl'].setValue(contract.Name);
+            this.f['acresControl'].setValue(contract.Acres);
+            this.f['amountControl'].setValue(contract.Amount);
+            this.f['ubicationControl'].setValue(contract.Location);
+            this.f['phoneControl'].setValue(contract.Phone);
+            const datePartsStart = contract.StartDate.split("/");
+            this.f['startDateControl'].setValue(new Date(+datePartsStart[2], +datePartsStart[1] - 1, +datePartsStart[0]));
+            const datePartsEnd = contract.EndDate.split("/");
+            this.f['endControl'].setValue(new Date(+datePartsEnd[2], +datePartsEnd[1] - 1, +datePartsEnd[0]));
+            this.f['descriptionControl'].setValue(contract.Description);
+        };
+        this.back = () => {
+            this._router.navigate(['/catalogo/contracts'], { relativeTo: this._route });
+        };
+        Object(ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_5__["defineLocale"])('es', ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_5__["esLocale"]);
+        this.localeService.use('es');
+    }
+    ngOnInit() {
+        this.contractForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
+            nameControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            acresControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            amountControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            ubicationControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](''),
+            phoneControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](''),
+            startDateControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            endControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
+            descriptionControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('')
+        });
+        if (this.idContract !== 0) {
+            this.getContract(this.idContract);
+        }
+    }
+    get f() { return this.contractForm.controls; }
+    getContractObject() {
+        const obj = new _model_Contract__WEBPACK_IMPORTED_MODULE_7__["Contract"]();
+        obj.Id = this.idContract;
+        obj.Name = this.f['nameControl'].value;
+        obj.Acres = this.f['acresControl'].value;
+        obj.Amount = this.f['amountControl'].value;
+        obj.Location = this.f['ubicationControl'].value;
+        obj.Phone = this.f['phoneControl'].value;
+        obj.StartDate = this.f['startDateControl'].value;
+        obj.EndDate = this.f['endControl'].value;
+        obj.Description = this.f['descriptionControl'].value;
+        return obj;
+    }
+};
+ContractRegisterComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"] },
+    { type: _Services_common_service_service__WEBPACK_IMPORTED_MODULE_8__["commonService"] },
+    { type: _Services_notification_service__WEBPACK_IMPORTED_MODULE_9__["NotificationService"] },
+    { type: ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_6__["BsLocaleService"] }
+];
+ContractRegisterComponent.propDecorators = {
+    idContract: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"] }]
+};
+ContractRegisterComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+        selector: 'app-conctract-register',
+        template: _raw_loader_contract_register_component_html__WEBPACK_IMPORTED_MODULE_1__["default"]
+    }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"],
+        _Services_common_service_service__WEBPACK_IMPORTED_MODULE_8__["commonService"],
+        _Services_notification_service__WEBPACK_IMPORTED_MODULE_9__["NotificationService"],
+        ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_6__["BsLocaleService"]])
+], ContractRegisterComponent);
+
+
 
 /***/ }),
 
@@ -13650,7 +13811,13 @@ let ImportImageComponent = class ImportImageComponent {
     constructor(_commonService, _notification) {
         this._commonService = _commonService;
         this._notification = _notification;
+        this.imageList = [];
+        this.imageName = '';
+        this.idImage = 0;
         this.idContract = 0;
+        this.clearDropofy = () => {
+            $('.dropify-clear').trigger('click');
+        };
         this.initDropify = () => {
             this.dropifyElement = $('.dropify').dropify({
                 messages: {
@@ -13684,17 +13851,63 @@ let ImportImageComponent = class ImportImageComponent {
         this.importImage = () => {
             this._commonService.onSaveImageContract(this.imageSelected).toPromise()
                 .then(result => {
-                this._notification.success("La imagen se ha añadido con éxito al contrato");
+                this._notification.success('La imagen se ha añadido con éxito al contrato');
+                this.clearDropofy();
+                this.getImages();
             }).catch(error => {
-                this._notification.error("Ha ocurrido un error al añadir la imagen al contrato");
+                this._notification.error('Ha ocurrido un error al añadir la imagen al contrato');
+            });
+        };
+        this.getImages = () => {
+            this._commonService.getAllImagesContracts(this.idContract).toPromise()
+                .then(result => {
+                this.imageList = result;
+            }).catch(error => {
+                this._notification.error('Ha ocurrido un error al consultar las imagenes');
+            });
+        };
+        this.onDeleteImage = () => {
+            this._commonService.onDeleteImageContract(this.idImage).toPromise()
+                .then(result => {
+                this.getImages();
+                this._notification.success('La imagen se ha eliminado con éxito.');
+            }).catch(error => {
+                this._notification.error('Ha ocurrido un error al eliminar la imagen');
             });
         };
     }
     ngOnInit() {
+        this.clearDropofy();
+        this.getImages();
         this.initDropify();
         this.dropifyElement.on('dropify.afterClear', () => {
             this.imageSelected = undefined;
         });
+    }
+    onDownload(image) {
+        const a = document.createElement("a"); //Create <a>
+        a.href = image.Base; //Image Base64 Goes here
+        a.download = image.Name; //File name Here
+        a.click();
+        // const byteCharacters = atob(image.Base);
+        // const byteNumbers = new Array(byteCharacters.length);
+        // for (let i = 0; i < byteCharacters.length; i++) {
+        //     byteNumbers[i] = byteCharacters.charCodeAt(i);
+        // }
+        // const byteArray = new Uint8Array(byteNumbers);
+        // const blob = new Blob([byteArray], { 'type': 'image/jpeg' });
+        // if (navigator.msSaveBlob) {
+        //     const filename = 'fichier';
+        //     navigator.msSaveBlob(blob, filename);
+        // } else {
+        //     const link = document.createElement("a");
+        //     link.href = URL.createObjectURL(blob);
+        //     link.setAttribute('visibility', 'hidden');
+        //     link.download = 'fichier';
+        //     document.body.appendChild(link);
+        //     link.click();
+        //     document.body.removeChild(link);
+        // }
     }
 };
 ImportImageComponent.ctorParameters = () => [
@@ -13726,7 +13939,7 @@ ImportImageComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])(
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-md-6\">\r\n        <label for=\"nf-price\">Importar imagen para el contrato</label><br>\r\n        <input #fileInput type=\"file\" (change)=\"handleFileInput($event.target.files)\" class=\"dropify\"\r\n            data-max-file-size=\"20M\" (click)=\"fileInput.value = null\" data-allowed-file-extensions=\"png jpg bmp\"\r\n            data-show-loader=\"false\" data-height=\"290\" />\r\n        <br />\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button type=\"button\" (click)=\"importImage();\" class=\"btn btn-success active float-right\" aria-pressed=\"true\"\r\n                    style=\"margin-left: 9px;\"><i class=\"fa cil-cloud-upload\"></i>&nbsp;Importar Imagen</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-6\">\r\n        <label for=\"nf-price\">Imagenes del contrato</label><br>\r\n        <table class=\"table table-bordered\">\r\n            <thead>\r\n                <tr>\r\n                    <th>#</th>\r\n                    <th>Nombre</th>\r\n                    <th>Acciones</th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr>\r\n                    <td>1</td>\r\n                    <td>imagen</td>\r\n                    <td>acciones</td>\r\n                </tr>\r\n            </tbody>\r\n            <!-- <tbody>\r\n                <tr\r\n                    *ngFor=\"let contract of contractsList | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalElements }\">\r\n                    <td>{{contract.Id}}</td>\r\n                    <td>{{contract.Name}}</td>\r\n                    <td>{{contract.StartDate}} al {{contract.EndDate}}</td>\r\n                    <td>{{contract.Acres}}</td>\r\n                    <td>{{contract.Amount}}</td>\r\n                    <td>\r\n                        <button type=\"button\" class=\"btn btn-info active\" aria-pressed=\"true\"\r\n                            (click)=\"dangerModal.show();idContract=contract.Id;contractName=contract.Name;\"><i\r\n                                class=\"fa fa-trash-o\"></i></button>\r\n                        <button type=\"button\" class=\"btn btn-info active\" aria-pressed=\"true\"\r\n                            (click)=\"goToRegister(contract.Id)\"><i class=\"fa fa-pencil\"></i></button>\r\n                        \r\n                    </td>\r\n                </tr>\r\n            </tbody> -->\r\n        </table>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-md-6\">\r\n        <label for=\"nf-price\">Importar imagen para el contrato</label><br>\r\n        <input #fileInput type=\"file\" (change)=\"handleFileInput($event.target.files)\" class=\"dropify\"\r\n            data-max-file-size=\"20M\" (click)=\"fileInput.value = null\" data-allowed-file-extensions=\"png jpg bmp jpeg\"\r\n            data-show-loader=\"false\" data-height=\"290\" />\r\n        <br />\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button type=\"button\" (click)=\"importImage();\" class=\"btn btn-success active float-right\" tooltip=\"Click guardar la imagen en el contrato\"\r\n                    aria-pressed=\"true\" style=\"margin-left: 9px;\"><i class=\"fa cil-cloud-upload\"></i>&nbsp;Importar\r\n                    Imagen</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-6\">\r\n        <label for=\"nf-price\">Imagenes del contrato</label><br>\r\n        <table class=\"table table-bordered\">\r\n            <thead>\r\n                <tr>\r\n                    <th>#</th>\r\n                    <th>Nombre</th>\r\n                    <th>Acciones</th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let image of imageList\">\r\n                    <td>{{image.Id}}</td>\r\n                    <td>{{image.Name}}</td>\r\n                    <td>\r\n                        <button type=\"button\" class=\"btn btn-danger active\" aria-pressed=\"true\"\r\n                            (click)=\"dangerModal.show();idImage=image.Id;imageName=image.Name;\" tooltip=\"Click para eliminar la imagen\"><i\r\n                                class=\"fa fa-trash-o\"></i></button>\r\n                        <button type=\"button\" class=\"btn btn-info active\" aria-pressed=\"true\" tooltip=\"Click para descargar la imagen\"\r\n                            (click)=\"onDownload(image)\"><i class=\"fa cil-cloud-download\"></i></button>\r\n                    </td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n</div>\r\n\r\n<div bsModal #dangerModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n  aria-hidden=\"true\">\r\n  <div class=\"modal-dialog modal-danger\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h4 class=\"modal-title\">Mensaje del sistema</h4>\r\n        <button type=\"button\" class=\"close\" (click)=\"dangerModal.hide()\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <h5>Está seguro que desea eliminar la imagen {{imageName}} del contrato?</h5>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"dangerModal.hide()\">Cancelar</button>\r\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"onDeleteImage();dangerModal.hide()\">&nbsp;&nbsp;Sí\r\n          &nbsp;&nbsp;</button>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->");
 
 /***/ }),
 
@@ -21564,125 +21777,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
 /* harmony import */ var _raw_loader_contract_manage_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./contract-manage.component.html */ "7+aZ");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "8Y7J");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "s7LF");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "iInd");
-/* harmony import */ var _model_Contract__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../model/Contract */ "2xLn");
-/* harmony import */ var _Services_common_service_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Services/common-service.service */ "7DoW");
-/* harmony import */ var _Services_notification_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Services/notification.service */ "B+sD");
-/* harmony import */ var ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-bootstrap/chronos */ "U9ZV");
-/* harmony import */ var ngx_bootstrap_locale__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ngx-bootstrap/locale */ "RWcO");
-/* harmony import */ var ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ngx-bootstrap/datepicker */ "hzby");
-
-
-
-
-
-
-
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "iInd");
 
 
 
 
 let ContractManageComponent = class ContractManageComponent {
-    constructor(_router, _route, _commonService, _notification, localeService) {
-        this._router = _router;
+    constructor(_route) {
         this._route = _route;
-        this._commonService = _commonService;
-        this._notification = _notification;
-        this.localeService = localeService;
-        this.disableButtonSave = false;
         this.idContract = 0;
-        this.reset = () => {
-            this.idContract = 0;
-            this.contractForm.reset();
-        };
-        this.onSave = () => {
-            const contract = this.getContractObject();
-            this.disableButtonSave = true;
-            this._commonService.onSaveContract(contract).toPromise()
-                .then(result => {
-                this.back();
-                this._notification.success('El contrato se guardó Correctamente');
-            }).catch(error => {
-                this._notification.error('Ha ocurrido un error al guardar el contrato');
-            });
-        };
-        this.getContract = (id) => {
-            this._commonService.getContract(id)
-                .subscribe(result => {
-                this.setContract(result);
-            });
-        };
-        this.setContract = (contract) => {
-            this.f['nameControl'].setValue(contract.Name);
-            this.f['acresControl'].setValue(contract.Acres);
-            this.f['amountControl'].setValue(contract.Amount);
-            this.f['ubicationControl'].setValue(contract.Location);
-            this.f['phoneControl'].setValue(contract.Phone);
-            const datePartsStart = contract.StartDate.split("/");
-            this.f['startDateControl'].setValue(new Date(+datePartsStart[2], +datePartsStart[1] - 1, +datePartsStart[0]));
-            const datePartsEnd = contract.EndDate.split("/");
-            this.f['endControl'].setValue(new Date(+datePartsEnd[2], +datePartsEnd[1] - 1, +datePartsEnd[0]));
-            this.f['descriptionControl'].setValue(contract.Description);
-        };
-        this.back = () => {
-            this._router.navigate(['/catalogo/contracts'], { relativeTo: this._route });
-        };
-        Object(ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_8__["defineLocale"])('es', ngx_bootstrap_locale__WEBPACK_IMPORTED_MODULE_9__["esLocale"]);
-        this.localeService.use('es');
     }
     ngOnInit() {
-        this.contractForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
-            nameControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
-            acresControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
-            amountControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
-            ubicationControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](''),
-            phoneControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](''),
-            startDateControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
-            endControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required),
-            descriptionControl: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('')
-        });
         this._route.params.subscribe(params => {
             this.idContract = params['id'] !== undefined ? +params['id'] : 0;
-            if (this.idContract !== 0) {
-                this.getContract(this.idContract);
-            }
         });
-    }
-    get f() { return this.contractForm.controls; }
-    getContractObject() {
-        const obj = new _model_Contract__WEBPACK_IMPORTED_MODULE_5__["Contract"]();
-        obj.Id = this.idContract;
-        obj.Name = this.f['nameControl'].value;
-        obj.Acres = this.f['acresControl'].value;
-        obj.Amount = this.f['amountControl'].value;
-        obj.Location = this.f['ubicationControl'].value;
-        obj.Phone = this.f['phoneControl'].value;
-        obj.StartDate = this.f['startDateControl'].value;
-        obj.EndDate = this.f['endControl'].value;
-        obj.Description = this.f['descriptionControl'].value;
-        return obj;
     }
 };
 ContractManageComponent.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"] },
-    { type: _Services_common_service_service__WEBPACK_IMPORTED_MODULE_6__["commonService"] },
-    { type: _Services_notification_service__WEBPACK_IMPORTED_MODULE_7__["NotificationService"] },
-    { type: ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_10__["BsLocaleService"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] }
 ];
 ContractManageComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
         template: _raw_loader_contract_manage_component_html__WEBPACK_IMPORTED_MODULE_1__["default"]
     }),
-    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"],
-        _Services_common_service_service__WEBPACK_IMPORTED_MODULE_6__["commonService"],
-        _Services_notification_service__WEBPACK_IMPORTED_MODULE_7__["NotificationService"],
-        ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_10__["BsLocaleService"]])
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
 ], ContractManageComponent);
 
 
+
+/***/ }),
+
+/***/ "m0pO":
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/views/Catalogos/contract-resume.component.html ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"animated fadeIn\">\r\n    <div class=\"card-columns cols-2\">\r\n\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                Bar Chart\r\n                <div class=\"card-header-actions\">\r\n                    <a href=\"http://www.chartjs.org\">\r\n                        <small class=\"text-muted\">docs</small>\r\n                    </a>\r\n                </div>\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <div class=\"chart-wrapper\">\r\n                    <canvas baseChart class=\"chart\" [datasets]=\"barChartData\" [labels]=\"barChartLabels\"\r\n                        [options]=\"barChartOptions\" [legend]=\"barChartLegend\" [chartType]=\"barChartType\"\r\n                        (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\"></canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                Pie Chart\r\n                <div class=\"card-header-actions\">\r\n                    <a href=\"http://www.chartjs.org\">\r\n                        <small class=\"text-muted\">docs</small>\r\n                    </a>\r\n                </div>\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <div class=\"chart-wrapper\">\r\n                    <canvas baseChart class=\"chart\" [data]=\"pieChartData\" [labels]=\"pieChartLabels\"\r\n                        [chartType]=\"pieChartType\" (chartHover)=\"chartHovered($event)\"\r\n                        (chartClick)=\"chartClicked($event)\"></canvas>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -21744,6 +21878,19 @@ CatalogoRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])
 ], CatalogoRoutingModule);
 
 
+
+/***/ }),
+
+/***/ "mnCy":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/views/Catalogos/contract-register.component.html ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"col-md-9\">\r\n    <div class=\"card\">\r\n        <div class=\"card-header\">\r\n            <strong>Campos del contrato</strong>\r\n            <!-- <small>Form</small> -->\r\n        </div>\r\n        <div class=\"card-body\">\r\n            <form [formGroup]=\"contractForm\" autocomplete=\"off\">\r\n                <div class=\"form-group row\">\r\n                    <label for=\"name\" class=\"col-md-3 col-form-label\">Nombre del Rentador:</label>\r\n                    <div class=\"col-md-9\">\r\n                        <input type=\"text\" class=\"form-control\" id=\"name\" maxlength=\"150\" formControlName=\"nameControl\">\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">No. Hectáreas:</label>\r\n                    <div class=\"col-md-9\">\r\n                        <input type=\"text\" class=\"form-control\" id=\"acres\" maxlength=\"50\"\r\n                            formControlName=\"acresControl\">\r\n                    </div>\r\n\r\n                </div>\r\n                <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Cantidad:</label>\r\n                    <div class=\"col-md-9\">\r\n                        <input type=\"text\" class=\"form-control\" appOnlyNumbers [aceptDecimal]=\"true\" id=\"amont\"\r\n                            formControlName=\"amountControl\">\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Ubicación</label>\r\n                    <div class=\"col-md-9\">\r\n                        <input type=\"text\" class=\"form-control\" id=\"ubicaiton\" maxlength=\"200\"\r\n                            formControlName=\"ubicationControl\">\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Teléfono</label>\r\n                    <div class=\"col-md-9\">\r\n                        <input type=\"text\" class=\"form-control\" id=\"phone\" maxlength=\"50\"\r\n                            formControlName=\"phoneControl\">\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Fecha inicio del contrato editado</label>\r\n                    <div class=\"col-md-9\">\r\n                        <div class=\"input-group\">\r\n                            <input type=\"text\" size=\"16\" readonly [bsConfig]=\"{ dateInputFormat: 'DD/MM/YYYY'}\"\r\n                                #dp=\"bsDatepicker\" placeholder=\"Seleccione una fecha\" formControlName=\"startDateControl\"\r\n                                class=\"form-control\" bsDatepicker>\r\n                            <span class=\"input-group-append\">\r\n                                <button class=\"btn btn-success\" (click)=\"dp.toggle()\"\r\n                                    [attr.aria-expanded]=\"dp.isOpen\"><i class=\"fa fa-calendar\"\r\n                                        aria-hidden=\"true\"></i></button>\r\n                            </span>\r\n                        </div>\r\n                        <!-- <input type=\"date\" class=\"form-control\" id=\"startdate\" data-date-format=\"DD MMMM YYYY\" formControlName=\"startDateControl\"> -->\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Fecha fin del contrato</label>\r\n                    <div class=\"col-md-9\">\r\n                        <div class=\"input-group\">\r\n                            <input type=\"text\" size=\"16\" readonly [bsConfig]=\"{ dateInputFormat: 'DD/MM/YYYY'}\"\r\n                                #dp=\"bsDatepicker\" placeholder=\"Seleccione una fecha\" formControlName=\"endControl\"\r\n                                class=\"form-control\" bsDatepicker>\r\n                            <span class=\"input-group-append\">\r\n                                <button class=\"btn btn-success\" (click)=\"dp.toggle()\"\r\n                                    [attr.aria-expanded]=\"dp.isOpen\"><i class=\"fa fa-calendar\"\r\n                                        aria-hidden=\"true\"></i></button>\r\n                            </span>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group row\">\r\n                    <label for=\"ccnumber\" class=\"col-md-3 col-form-label\">Descripción</label>\r\n                    <div class=\"col-md-9\">\r\n                        <textarea id=\"description\" name=\"textarea-input\" maxlength=\"500\" rows=\"3\" class=\"form-control\"\r\n                            formControlName=\"descriptionControl\"></textarea>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n        <div class=\"card-footer\">\r\n            <button type=\"submit\" class=\"btn btn-primary float-right\" style=\"margin-left: 9px\"\r\n                tooltip=\"Click para guardar los cambios del contrato\" (click)=\"onSave()\"\r\n                [disabled]=\"contractForm.invalid || disableButtonSave\"><i class=\"fa fa-dot-circle-o\"></i>\r\n                Guardar</button>\r\n            <button type=\"reset\" class=\"btn btn-danger float-right\"\r\n                tooltip=\"Click para cancelar los cambios del contrato\" (click)=\"back()\"><i class=\"fa fa-ban\"></i>\r\n                Cancelar</button>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 

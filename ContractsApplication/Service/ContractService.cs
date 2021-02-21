@@ -23,7 +23,7 @@ namespace ContractsApplication.Service
 
         public void DeleteContract(int id)
         {
-            var contract = UnitOfWork.GetRepository<Contracts>().GetAll().FirstOrDefault(c=> c.Id == id);
+            var contract = UnitOfWork.GetRepository<Contracts>().GetAll().FirstOrDefault(c => c.Id == id);
             contract.IsDelete = true;
             contract.LastUpdate = DateTime.Now;
             UnitOfWork.GetRepository<Contracts>().Update(contract);
@@ -31,9 +31,28 @@ namespace ContractsApplication.Service
 
         }
 
+        public void DeleteImageContract(int idImage)
+        {
+            var ImageContract = UnitOfWork.GetRepository<ImageContract>().GetAll().FirstOrDefault(c => c.Id == idImage);
+            if (ImageContract != null)
+            {
+                ImageContract.IsDeelte = true;
+                UnitOfWork.GetRepository<ImageContract>().Update(ImageContract);
+                UnitOfWork.SaveChanges();
+            }
+
+        }
+
         public IList<Contracts> GetAllContracts()
         {
             return UnitOfWork.GetRepository<Contracts>().GetAll().ToList();
+        }
+
+        public List<ImageContract> GetAllImagesContract(int idContract)
+        {
+            var imageList = UnitOfWork.GetRepository<ImageContract>().GetAll().Where(c => c.IdContract == idContract && c.IsDeelte == false).ToList();
+           
+            return imageList;
         }
 
         public Contracts GetContractById(int id)
@@ -59,6 +78,7 @@ namespace ContractsApplication.Service
             var image = new ImageContract();
             image.Name = imageContract.Name;
             image.Base = imageContract.Base;
+            image.IdContract = contract.Id;
 
             if (contract.Images == null)
             {
@@ -87,7 +107,8 @@ namespace ContractsApplication.Service
                 contractBD.Description = contract.Description;
                 UnitOfWork.GetRepository<Contracts>().Update(contractBD);
             }
-            else {
+            else
+            {
                 contract.CreationDate = DateTime.Now;
                 contract.LastUpdate = DateTime.Now;
                 UnitOfWork.GetRepository<Contracts>().Add(contract);

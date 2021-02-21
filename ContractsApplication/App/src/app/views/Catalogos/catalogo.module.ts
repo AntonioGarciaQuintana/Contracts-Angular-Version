@@ -15,6 +15,10 @@ import { ContractsComponent } from "./contracts.component";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { ContractManageComponent } from "./contract-manage.component";
 import { ImportImageComponent } from "./import-image.component";
+import { TooltipModule } from "ngx-bootstrap/tooltip";
+import { ContractResumeComponent } from "./contract-resume.component";
+import { ChartsModule } from "ng2-charts";
+import { ContractRegisterComponent } from "./contract-register.component";
 
 
 @NgModule({
@@ -26,16 +30,20 @@ import { ImportImageComponent } from "./import-image.component";
         ApplicationPipeModule,
         NgxPaginationModule,
         ReactiveFormsModule,
+        ChartsModule,
         TabsModule.forRoot(),
         ToastrModule.forRoot(),
         NgxLoadingModule.forRoot({}),
         BsDatepickerModule.forRoot(),
         ModalModule.forRoot(),
+        TooltipModule.forRoot()
     ],
     declarations: [
         ContractsComponent,
         ContractManageComponent,
-        ImportImageComponent
+        ImportImageComponent,
+        ContractResumeComponent,
+        ContractRegisterComponent
     ],
     exports: [
 

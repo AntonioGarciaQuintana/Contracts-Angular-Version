@@ -16,9 +16,7 @@ namespace ContractsApplication.Models
         public string Name { get; set; }
         public string Base { get; set; }
         public bool IsDeelte { get; set; }
-
-        [ForeignKey("Id")]
-        public Contracts Contract { get; set; }
+        public virtual Contracts Contract { get; set; }
         public int IdContract { get; set; }
 
     }

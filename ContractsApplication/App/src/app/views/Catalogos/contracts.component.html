@@ -16,8 +16,9 @@
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                             class="fa fa-search"></i></span>
-                                </div><input class="form-control ng-untouched ng-pristine ng-valid" placeholder="Filtrar por Nombre o ID"
-                                    type="text" maxlength="100" [(ngModel)]="filters.search" (keyup.enter)="firstPage()">
+                                </div><input class="form-control ng-untouched ng-pristine ng-valid"
+                                    placeholder="Filtrar por Nombre o ID" type="text" maxlength="100"
+                                    [(ngModel)]="filters.search" (keyup.enter)="firstPage()">
                             </div>
 
                         </div>
@@ -25,15 +26,16 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-info active" aria-pressed="true"
-                            (click)="goToRegister()"><i class="fa fa-plus-square-o"></i> &nbsp;
+                        <button type="button" class="btn btn-info active" tooltip="Click para guardar un nuevo contrato"
+                            aria-pressed="true" (click)="goToRegister()"><i class="fa fa-plus-square-o"></i> &nbsp;
                             Nuevo</button>
                     </div>
                     <div class="col-md-6">
-                        <button type="button" (click)="firstPage();" class="btn btn-info active float-right"
-                            aria-pressed="true" style="margin-left: 9px;"><i
+                        <button type="button" (click)="firstPage();" tooltip="Click para filtrar"
+                            class="btn btn-info active float-right" aria-pressed="true" style="margin-left: 9px;"><i
                                 class="fa fa-hand-o-right"></i>&nbsp;Filtrar</button>
-                        <button type="button" class="btn btn-info active float-right" (click)="onCleanFilter();"
+                        <button type="button" class="btn btn-info active float-right"
+                            tooltip="Click para limpiar los campos de busqueda" (click)="onCleanFilter();"
                             aria-pressed="true"><i class="fa fa-filter"></i>&nbsp;Limpiar</button>
                     </div>
                 </div>
@@ -58,11 +60,22 @@
                             <td>{{contract.Acres}}</td>
                             <td>{{contract.Amount}}</td>
                             <td>
-                                <button type="button" class="btn btn-info active" aria-pressed="true"
+                                <button *ngIf="!disableCancel" type="button" class="btn btn-info active"
+                                    tooltip="Click para cancelar el contrato" aria-pressed="true"
                                     (click)="dangerModal.show();idContract=contract.Id;contractName=contract.Name;"><i
                                         class="fa fa-trash-o"></i></button>
-                                <button type="button" class="btn btn-info active" aria-pressed="true"
+                                <button *ngIf="!disableEdit" type="button" class="btn btn-info active"
+                                    tooltip="Click para editar el contrato" aria-pressed="true"
                                     (click)="goToRegister(contract.Id)"><i class="fa fa-pencil"></i></button>
+                                <button *ngIf="!disablePamentContract" type="button" class="btn btn-info active"
+                                    tooltip="Click para registar pago renta" aria-pressed="true"
+                                    (click)="goToRegister(contract.Id)"><i class="fa cil-money "></i></button>
+                                <button *ngIf="!disablePamentWater" type="button" class="btn btn-info active"
+                                    tooltip="Click para registar pago de agua" aria-pressed="true"
+                                    (click)="goToRegister(contract.Id)"><i class="fa cil-pool active"></i></button>
+                                
+
+                                
                                 <!-- <span class="badge badge-success">Active</span> -->
                             </td>
                         </tr>
@@ -77,23 +90,23 @@
 </div>
 
 <div bsModal #dangerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-danger" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Mensaje del sistema</h4>
-        <button type="button" class="close" (click)="dangerModal.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h5>Está seguro que desea cancelar el Contrato de {{contractName}}?</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Cancelar</button>
-        <button type="button" class="btn btn-danger" (click)="onCancel();dangerModal.hide()">&nbsp;&nbsp;Sí
-          &nbsp;&nbsp;</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+    aria-hidden="true">
+    <div class="modal-dialog modal-danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Mensaje del sistema</h4>
+                <button type="button" class="close" (click)="dangerModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Está seguro que desea cancelar el Contrato de {{contractName}}?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="onCancel();dangerModal.hide()">&nbsp;&nbsp;Sí
+                    &nbsp;&nbsp;</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

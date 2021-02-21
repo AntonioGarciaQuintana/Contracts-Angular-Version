@@ -12,9 +12,9 @@ export class commonService {
     getPages(page: number, size: number, sort: string, search?: string) {
         const Gurl = `${this.urlContracts + '/GetPage'}/?page=${page}&size=${size}&sort=${sort}&search=${search}`;
         return this.http.get<any[]>(Gurl);
-      }
+    }
 
-    getAllContracts = () =>{
+    getAllContracts = () => {
         const Gurl = `${this.urlContracts + '/GetAllContracts'}`;
         return this.http.get<any[]>(Gurl);
     }
@@ -34,5 +34,14 @@ export class commonService {
     onSaveImageContract(obj: any) {
         return this.http.post<any>(this.urlContracts + '/SaveImageContract', obj);
     }
-    
+
+    getAllImagesContracts = (idContract: number) => {
+        const Gurl = `${this.urlContracts + '/GetAllImageContracts'}/?idContract=${idContract}`;
+        return this.http.get<any[]>(Gurl);
+    }
+
+    onDeleteImageContract = (idImage: number) => {
+        const Gurl = `${this.urlContracts + '/DeleteImageContract'}/?idImage=${idImage}`;
+        return this.http.delete<any>(Gurl);
+    }
 }

@@ -395,3 +395,5 @@ C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\Contrac
 C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.change_datetimeType_Contract.resources
 C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.addedStringLengthDesription.resources
 C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.addimagecontractmodel.resources
+C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.change_relational_imagecontract.resources
+C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.changerelationalimageContract.resources
