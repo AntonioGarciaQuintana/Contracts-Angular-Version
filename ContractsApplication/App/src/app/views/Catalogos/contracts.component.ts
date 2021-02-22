@@ -90,6 +90,13 @@ export class ContractsComponent implements OnInit {
         }
 
     }
+    goToPaymentRegister(idContract?: number){
+        if (idContract !== undefined) {
+            this._router.navigate(['/payment/payment-contract-register', { id: idContract }], { relativeTo: this._route });
+        } else {
+            this._router.navigate(['/payment/payment-contract-register'], { relativeTo: this._route });
+        }
+    }
 
     onCleanFilter = () => {
         this.filters = {

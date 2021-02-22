@@ -220,11 +220,18 @@
     <Compile Include="Migrations\202102201814279_changerelationalimageContract.designer.cs">
       <DependentUpon>202102201814279_changerelationalimageContract.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102220134125_addPaymentContract.cs" />
+    <Compile Include="Migrations\202102220134125_addPaymentContract.designer.cs">
+      <DependentUpon>202102220134125_addPaymentContract.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contracts.cs" />
     <Compile Include="Models\DTO\ContractDTO.cs" />
     <Compile Include="Models\DTO\DataTableDto.cs" />
+    <Compile Include="Models\Enums\PaymentMethodEnum.cs" />
+    <Compile Include="Models\Enums\PaymentTypeEnum.cs" />
     <Compile Include="Models\ImageContract.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Interfaces\IRepository.cs" />
@@ -351,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102201814279_changerelationalimageContract.resx">
       <DependentUpon>202102201814279_changerelationalimageContract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102220134125_addPaymentContract.resx">
+      <DependentUpon>202102220134125_addPaymentContract.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

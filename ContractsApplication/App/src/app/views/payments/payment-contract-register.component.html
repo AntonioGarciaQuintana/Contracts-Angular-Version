@@ -1,0 +1,135 @@
+<div class="row">
+
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header">
+                <strong>Registro de pago de Contrato</strong>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="paymentForm" autocomplete="off">
+                    <div class="form-group">
+                        <label for="company">Nombre del beneficiario</label>
+                        <input type="text" class="form-control" id="company" placeholder=""
+                            formControlName="nameControl" maxlength="150">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="city">Metodo de pago</label>
+                            <select class="form-control" id="" [formControl]="f.methodPayControl">
+                                <option value="">Seleccione un metodo de pago</option>
+                                <option value="0">Cheque</option>
+                                <option value="1">Efectivo</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="postal-code">Fecha</label>
+                            <div class="input-group">
+                                <input type="text" size="16" readonly [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}"
+                                    #dp="bsDatepicker" placeholder="Seleccione una fecha" formControlName="dateControl"
+                                    class="form-control" bsDatepicker>
+                                <span class="input-group-append">
+                                    <button class="btn btn-success" (click)="dp.toggle()"
+                                        [attr.aria-expanded]="dp.isOpen"><i class="fa fa-calendar"
+                                            aria-hidden="true"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="postal-code">Monto</label>
+                            <input type="text" class="form-control" id="postal-code" appOnlyNumbers formControlName="amountControl"
+                                placeholder="">
+                        </div>
+                        <div class="form-group col-sm-6" *ngIf="f.methodPayControl.value === '0'">
+                            <label for="city">Banco</label>
+                            <input type="text" class="form-control" id="vat" maxlength="100" formControlName="bankControl"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="f.methodPayControl.value === '0'">
+                        <label for="vat">No. Cheque</label>
+                        <input type="text" class="form-control" id="vat2" maxlength="100" formControlName="noCheckControl"
+                            placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="vat">Imagen</label>
+                        <input #fileInput type="file" (change)="handleFileInput($event.target.files)" class="dropify"
+                            data-max-file-size="20M" (click)="fileInput.value = null"
+                            data-allowed-file-extensions="png jpg bmp jpeg" data-show-loader="false"
+                            data-height="150" />
+                    </div>
+                    <div class="form-group">
+                        <label for="vat">Descripción</label>
+                        <textarea id="description" name="textarea-input" maxlength="500" rows="3" class="form-control"
+                            formControlName="descriptionControl" maxlength="500"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary float-right" style="margin-left: 9px"
+                    tooltip="Click para guardar los cambios del contrato" (click)="onSave()"><i
+                        class="fa fa-dot-circle-o"></i>
+                    Guardar</button>
+                <button type="reset" class="btn btn-danger float-right"
+                    tooltip="Click para cancelar los cambios del contrato" (click)="back()"><i class="fa fa-ban"></i>
+                    Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Imagenes del contrato
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let image of imageList">
+                            <td>{{image.Id}}</td>
+                            <td>{{image.Name}}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger active" aria-pressed="true"
+                                    (click)="dangerModal.show();idImage=image.Id;imageName=image.Name;"
+                                    tooltip="Click para eliminar la imagen"><i class="fa fa-trash-o"></i></button>
+                                <button type="button" class="btn btn-info active" aria-pressed="true"
+                                    tooltip="Click para descargar la imagen" (click)="onDownload(image)"><i
+                                        class="fa cil-cloud-download"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #dangerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Mensaje del sistema</h4>
+                <button type="button" class="close" (click)="dangerModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Está seguro que desea eliminar la imagen {{imageName}} del contrato?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="onDeleteImage();dangerModal.hide()">&nbsp;&nbsp;Sí
+                    &nbsp;&nbsp;</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,44 +1,52 @@
 <div class="row">
-    <div class="col-md-6">
-        <label for="nf-price">Importar imagen para el contrato</label><br>
-        <input #fileInput type="file" (change)="handleFileInput($event.target.files)" class="dropify"
-            data-max-file-size="20M" (click)="fileInput.value = null" data-allowed-file-extensions="png jpg bmp jpeg"
-            data-show-loader="false" data-height="290" />
-        <br />
-        <div class="row">
-            <div class="col-md-12">
-                <button type="button" (click)="importImage();" class="btn btn-success active float-right" tooltip="Click guardar la imagen en el contrato"
-                    aria-pressed="true" style="margin-left: 9px;"><i class="fa cil-cloud-upload"></i>&nbsp;Importar
-                    Imagen</button>
-            </div>
-        </div>
+  <div class="col-md-6">
+    <label for="nf-price">Importar imagen para el contrato</label><br>
+    <input #fileInput type="file" (change)="handleFileInput($event.target.files)" class="dropify"
+      data-max-file-size="20M" (click)="fileInput.value = null" data-allowed-file-extensions="png jpg bmp jpeg"
+      data-show-loader="false" data-height="290" />
+    <br />
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" (click)="importImage();" class="btn btn-success active float-right"
+          tooltip="Click guardar la imagen en el contrato" aria-pressed="true" style="margin-left: 9px;"><i
+            class="fa cil-cloud-upload"></i>&nbsp;Importar
+          Imagen</button>
+      </div>
     </div>
+  </div>
 
-    <div class="col-md-6">
-        <label for="nf-price">Imagenes del contrato</label><br>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Imagenes del contrato
+      </div>
+      <div class="card-body">
         <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let image of imageList">
-                    <td>{{image.Id}}</td>
-                    <td>{{image.Name}}</td>
-                    <td>
-                        <button type="button" class="btn btn-danger active" aria-pressed="true"
-                            (click)="dangerModal.show();idImage=image.Id;imageName=image.Name;" tooltip="Click para eliminar la imagen"><i
-                                class="fa fa-trash-o"></i></button>
-                        <button type="button" class="btn btn-info active" aria-pressed="true" tooltip="Click para descargar la imagen"
-                            (click)="onDownload(image)"><i class="fa cil-cloud-download"></i></button>
-                    </td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let image of imageList">
+              <td>{{image.Id}}</td>
+              <td>{{image.Name}}</td>
+              <td>
+                <button type="button" class="btn btn-danger active" aria-pressed="true"
+                  (click)="dangerModal.show();idImage=image.Id;imageName=image.Name;"
+                  tooltip="Click para eliminar la imagen"><i class="fa fa-trash-o"></i></button>
+                <button type="button" class="btn btn-info active" aria-pressed="true"
+                  tooltip="Click para descargar la imagen" (click)="onDownload(image)"><i
+                    class="fa cil-cloud-download"></i></button>
+              </td>
+            </tr>
+          </tbody>
         </table>
+      </div>
     </div>
+  </div>
 </div>
 
 <div bsModal #dangerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

@@ -800,15 +800,19 @@ const routes = [
         children: [
             {
                 path: 'catalogo',
-                loadChildren: () => Promise.all(/*! import() | views-Catalogos-catalogo-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~74bab4d4"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-notifications-notifications-module"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module"), __webpack_require__.e("views-Catalogos-catalogo-module")]).then(__webpack_require__.bind(null, /*! ./views/Catalogos/catalogo.module */ "/DOo")).then(m => m.CatalogoModule)
+                loadChildren: () => Promise.all(/*! import() | views-Catalogos-catalogo-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-notifications-notifications-module~views-payments-paym~4d5c0880"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-payments-payment-module"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-payments-payment-module"), __webpack_require__.e("views-Catalogos-catalogo-module")]).then(__webpack_require__.bind(null, /*! ./views/Catalogos/catalogo.module */ "/DOo")).then(m => m.CatalogoModule)
+            },
+            {
+                path: 'payment',
+                loadChildren: () => Promise.all(/*! import() | views-payments-payment-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-notifications-notifications-module~views-payments-paym~4d5c0880"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-payments-payment-module"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-payments-payment-module"), __webpack_require__.e("views-payments-payment-module")]).then(__webpack_require__.bind(null, /*! ./views/payments/payment.module */ "SEax")).then(m => m.PaymentModule)
             },
             {
                 path: 'base',
-                loadChildren: () => Promise.all(/*! import() | views-base-base-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~74bab4d4"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module"), __webpack_require__.e("views-base-base-module")]).then(__webpack_require__.bind(null, /*! ./views/base/base.module */ "Cvcy")).then(m => m.BaseModule)
+                loadChildren: () => Promise.all(/*! import() | views-base-base-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-payments-payment-module"), __webpack_require__.e("views-base-base-module")]).then(__webpack_require__.bind(null, /*! ./views/base/base.module */ "Cvcy")).then(m => m.BaseModule)
             },
             {
                 path: 'buttons',
-                loadChildren: () => Promise.all(/*! import() | views-buttons-buttons-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~74bab4d4"), __webpack_require__.e("views-buttons-buttons-module")]).then(__webpack_require__.bind(null, /*! ./views/buttons/buttons.module */ "Reju")).then(m => m.ButtonsModule)
+                loadChildren: () => Promise.all(/*! import() | views-buttons-buttons-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("views-buttons-buttons-module")]).then(__webpack_require__.bind(null, /*! ./views/buttons/buttons.module */ "Reju")).then(m => m.ButtonsModule)
             },
             {
                 path: 'charts',
@@ -816,7 +820,7 @@ const routes = [
             },
             {
                 path: 'dashboard',
-                loadChildren: () => Promise.all(/*! import() | views-dashboard-dashboard-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~74bab4d4"), __webpack_require__.e("default~views-dashboard-dashboard-module~views-theme-theme-module~views-widgets-widgets-module"), __webpack_require__.e("common"), __webpack_require__.e("views-dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ./views/dashboard/dashboard.module */ "6dU7")).then(m => m.DashboardModule)
+                loadChildren: () => Promise.all(/*! import() | views-dashboard-dashboard-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("default~views-dashboard-dashboard-module~views-theme-theme-module~views-widgets-widgets-module"), __webpack_require__.e("common"), __webpack_require__.e("views-dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ./views/dashboard/dashboard.module */ "6dU7")).then(m => m.DashboardModule)
             },
             {
                 path: 'icons',
@@ -824,7 +828,7 @@ const routes = [
             },
             {
                 path: 'notifications',
-                loadChildren: () => Promise.all(/*! import() | views-notifications-notifications-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-notifications-notifications-module"), __webpack_require__.e("views-notifications-notifications-module")]).then(__webpack_require__.bind(null, /*! ./views/notifications/notifications.module */ "KpDv")).then(m => m.NotificationsModule)
+                loadChildren: () => Promise.all(/*! import() | views-notifications-notifications-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-notifications-notifications-module~views-payments-paym~4d5c0880"), __webpack_require__.e("views-notifications-notifications-module")]).then(__webpack_require__.bind(null, /*! ./views/notifications/notifications.module */ "KpDv")).then(m => m.NotificationsModule)
             },
             {
                 path: 'theme',
@@ -886,6 +890,20 @@ const navItems = [
                 icon: 'icon-puzzle'
             }
         ]
+    },
+    {
+        title: true,
+        name: 'Pagos'
+    },
+    {
+        name: 'Pago de contratos',
+        url: '/payment/payment-contract',
+        icon: 'icon-briefcase'
+    },
+    {
+        name: 'Pago de agua',
+        url: '/payment/payment-water',
+        icon: 'icon-drop'
     },
     {
         title: true,

@@ -28,6 +28,20 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
+    name: 'Pagos'
+  },
+  {
+    name: 'Pago de contratos',
+    url: '/payment/payment-contract',
+    icon: 'icon-briefcase'
+  },
+  {
+    name: 'Pago de agua',
+    url: '/payment/payment-water',
+    icon: 'icon-drop'
+  },
+  {
+    title: true,
     name: 'Theme'
   },
   {

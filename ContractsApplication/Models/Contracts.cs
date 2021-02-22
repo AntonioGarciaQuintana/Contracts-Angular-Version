@@ -54,6 +54,7 @@ namespace ContractsApplication.Models
         [JsonConverter(typeof(JsonDateConverter))]
         public DateTime LastUpdate { get; set; }
         public virtual List<ImageContract> Images { get; set; }
+        public virtual List<Payment> Payments { get; set; }
         public bool IsDelete { get; set; }
     }
 }
