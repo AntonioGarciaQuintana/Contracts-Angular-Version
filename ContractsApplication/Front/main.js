@@ -92,7 +92,8 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     production: false,
     url: 'localhost',
-    contracts: '/Contract'
+    contracts: '/Contract',
+    payment: '/Payment'
 };
 
 

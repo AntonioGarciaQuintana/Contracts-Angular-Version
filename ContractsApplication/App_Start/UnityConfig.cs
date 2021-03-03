@@ -17,6 +17,7 @@ namespace ContractsApplication
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<ITestService, TestService>();
             container.RegisterType<IContractService, ContractService>();
+            container.RegisterType<IPaymentService, PaymentService>();
             // e.g. container.RegisterType<ITestService, TestService>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));

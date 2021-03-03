@@ -1,5 +1,42 @@
 <div class="row">
-
+    <div class="col-md-7">
+        <app-amount-resume [idContract]="idContract" [PaymentType]="PaymentType"></app-amount-resume>
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Imagenes del contrato
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let payment of paymentList">
+                            <td>{{payment.Id}}</td>
+                            <td>{{payment.Name}}</td>
+                            <td>{{payment.Amount}}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning active" tooltip="Click para editar el pago"
+                                    aria-pressed="true" (click)="onEditPayment(payment)"><i
+                                        class="fa fa-pencil"></i></button>
+                                <button type="button" class="btn btn-danger active" aria-pressed="true"
+                                    (click)="dangerModal.show();idPayment=payment.Id;paymentName=payment.Name;"
+                                    tooltip="Click para eliminar el pago"><i class="fa fa-trash-o"></i></button>
+                                <button *ngIf="payment.Base" type="button" class="btn btn-info active"
+                                    aria-pressed="true" tooltip="Click para descargar la imagen"
+                                    (click)="onDownload(payment)"><i class="fa cil-cloud-download"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
@@ -39,19 +76,19 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="postal-code">Monto</label>
-                            <input type="text" class="form-control" id="postal-code" appOnlyNumbers formControlName="amountControl"
-                                placeholder="">
+                            <input type="text" class="form-control" id="postal-code" appOnlyNumbers
+                                formControlName="amountControl" placeholder="">
                         </div>
                         <div class="form-group col-sm-6" *ngIf="f.methodPayControl.value === '0'">
                             <label for="city">Banco</label>
-                            <input type="text" class="form-control" id="vat" maxlength="100" formControlName="bankControl"
-                                placeholder="">
+                            <input type="text" class="form-control" id="vat" maxlength="100"
+                                formControlName="bankControl" placeholder="">
                         </div>
                     </div>
                     <div class="form-group" *ngIf="f.methodPayControl.value === '0'">
                         <label for="vat">No. Cheque</label>
-                        <input type="text" class="form-control" id="vat2" maxlength="100" formControlName="noCheckControl"
-                            placeholder="">
+                        <input type="text" class="form-control" id="vat2" maxlength="100"
+                            formControlName="noCheckControl" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="vat">Imagen</label>
@@ -69,44 +106,12 @@
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary float-right" style="margin-left: 9px"
-                    tooltip="Click para guardar los cambios del contrato" (click)="onSave()"><i
+                    tooltip="Click para guardar los cambios del pago" (click)="onSave()"><i
                         class="fa fa-dot-circle-o"></i>
                     Guardar</button>
                 <button type="reset" class="btn btn-danger float-right"
-                    tooltip="Click para cancelar los cambios del contrato" (click)="back()"><i class="fa fa-ban"></i>
+                    tooltip="Click para cancelar los cambios del pago" (click)="onResetForm()"><i class="fa fa-ban"></i>
                     Cancelar</button>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-7">
-        <div class="card">
-            <div class="card-header">
-                <i class="fa fa-align-justify"></i> Imagenes del contrato
-            </div>
-            <div class="card-body">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let image of imageList">
-                            <td>{{image.Id}}</td>
-                            <td>{{image.Name}}</td>
-                            <td>
-                                <button type="button" class="btn btn-danger active" aria-pressed="true"
-                                    (click)="dangerModal.show();idImage=image.Id;imageName=image.Name;"
-                                    tooltip="Click para eliminar la imagen"><i class="fa fa-trash-o"></i></button>
-                                <button type="button" class="btn btn-info active" aria-pressed="true"
-                                    tooltip="Click para descargar la imagen" (click)="onDownload(image)"><i
-                                        class="fa cil-cloud-download"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
@@ -123,7 +128,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h5>Está seguro que desea eliminar la imagen {{imageName}} del contrato?</h5>
+                <h5>Está seguro que desea eliminar el registro de {{paymentName}} del contrato?</h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Cancelar</button>

@@ -184,6 +184,7 @@
     <Compile Include="Context\ModelContext.cs" />
     <Compile Include="Controllers\ContractController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -224,8 +225,13 @@
     <Compile Include="Migrations\202102220134125_addPaymentContract.designer.cs">
       <DependentUpon>202102220134125_addPaymentContract.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103030107235_changeTypeAmountColumn.cs" />
+    <Compile Include="Migrations\202103030107235_changeTypeAmountColumn.designer.cs">
+      <DependentUpon>202103030107235_changeTypeAmountColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contracts.cs" />
+    <Compile Include="Models\DTO\AmountResumeDTO.cs" />
     <Compile Include="Models\DTO\ContractDTO.cs" />
     <Compile Include="Models\DTO\DataTableDto.cs" />
     <Compile Include="Models\Enums\PaymentMethodEnum.cs" />
@@ -240,7 +246,9 @@
     <Compile Include="Repository\UnitOfWork.cs" />
     <Compile Include="Service\ContractService.cs" />
     <Compile Include="Service\Interfaces\IContractService.cs" />
+    <Compile Include="Service\Interfaces\IPaymentService.cs" />
     <Compile Include="Service\Interfaces\ITestService.cs" />
+    <Compile Include="Service\PaymentService.cs" />
     <Compile Include="Service\TestService.cs" />
     <Compile Include="Util\CustomDateTimeConverter.cs" />
     <Compile Include="Util\CustomJavaScriptDateTimeConverter.cs" />
@@ -301,6 +309,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Front\" />
     <Folder Include="Views\Contract\" />
+    <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -361,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102220134125_addPaymentContract.resx">
       <DependentUpon>202102220134125_addPaymentContract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103030107235_changeTypeAmountColumn.resx">
+      <DependentUpon>202103030107235_changeTypeAmountColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

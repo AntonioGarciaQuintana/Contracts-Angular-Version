@@ -43,8 +43,8 @@ export class ImportImageComponent implements OnInit {
     initDropify = () => {
         this.dropifyElement = $('.dropify').dropify({
             messages: {
-                'default': 'Selecciona una imagen',
-                'replace': 'Selecciona una imagen',
+                'default': 'Imagen',
+                'replace': 'Imagen',
                 'remove': 'Eliminar',
                 'error': 'Ooops, algo paso mal'
             },
@@ -103,35 +103,10 @@ export class ImportImageComponent implements OnInit {
     }
 
     onDownload(image: any) {
-        const a = document.createElement("a"); //Create <a>
-        a.href = image.Base; //Image Base64 Goes here
-        a.download = image.Name; //File name Here
+        const a = document.createElement('a');
+        a.href = image.Base;
+        a.download = image.Name;
         a.click();
-        // const byteCharacters = atob(image.Base);
-        // const byteNumbers = new Array(byteCharacters.length);
-        // for (let i = 0; i < byteCharacters.length; i++) {
-        //     byteNumbers[i] = byteCharacters.charCodeAt(i);
-        // }
-
-        // const byteArray = new Uint8Array(byteNumbers);
-
-        // const blob = new Blob([byteArray], { 'type': 'image/jpeg' });
-
-        // if (navigator.msSaveBlob) {
-        //     const filename = 'fichier';
-        //     navigator.msSaveBlob(blob, filename);
-        // } else {
-        //     const link = document.createElement("a");
-
-        //     link.href = URL.createObjectURL(blob);
-
-        //     link.setAttribute('visibility', 'hidden');
-        //     link.download = 'fichier';
-
-        //     document.body.appendChild(link);
-        //     link.click();
-        //     document.body.removeChild(link);
-        // }
     }
 
 }

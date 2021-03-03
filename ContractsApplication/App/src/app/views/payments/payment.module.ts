@@ -10,9 +10,11 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { ToastrModule } from "ngx-toastr";
 import { commonService } from "../../Services/common-service.service";
 import { NotificationService } from "../../Services/notification.service";
+import { SharedService } from "../../Services/SharedService.service";
 import { CatalogoModule } from "../Catalogos/catalogo.module";
 import { ContractsComponent } from "../Catalogos/contracts.component";
 import { ApplicationPipeModule } from "../pipe.module";
+import { AmountResumeByContractComponent } from "./amount-resume-by-contract.component";
 import { PaymentContractRegisterComponent } from "./payment-contract-register.component";
 import { PaymentContractComponent } from "./payment-contract.component";
 import { PaymentRoutingModule } from "./payment-routing.module";
@@ -37,11 +39,13 @@ import { PaymentWaterComponent } from "./payment-water.component";
         PaymentContractComponent,
         PaymentWaterComponent,
         ContractsComponent,
-        PaymentContractRegisterComponent
+        PaymentContractRegisterComponent,
+        AmountResumeByContractComponent
     ],
     providers: [
         commonService,
-        NotificationService
+        NotificationService,
+        SharedService
     ]
 })
 export class PaymentModule {}

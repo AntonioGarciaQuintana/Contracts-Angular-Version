@@ -10,5 +10,5 @@ export class Payment {
     NameImage: string;
     Base: string;
     IdContract: number;
-    Type: number
+    Type: number;
 }

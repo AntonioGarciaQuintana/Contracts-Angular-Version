@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 export class commonService {
 
     urlContracts = environment.contracts;
+    urlPayment = environment.payment;
 
     constructor(private http: HttpClient) { }
 
@@ -44,4 +45,19 @@ export class commonService {
         const Gurl = `${this.urlContracts + '/DeleteImageContract'}/?idImage=${idImage}`;
         return this.http.delete<any>(Gurl);
     }
+
+    onSavePayment(obj: any) {
+        return this.http.post<any>(this.urlPayment + '/SavePayment', obj);
+    }
+
+    getAllPaymentContract = (idContract: number, type: number) => {
+        const Gurl = `${this.urlPayment + '/GetAllPayment'}/?idContract=${idContract}&type=${type}`;
+        return this.http.get<any[]>(Gurl);
+    }
+
+    getAmountResumeByContract = (idContract: number, type: number) => {
+        const Gurl = `${this.urlPayment + '/GetAmountResumeByContract'}/?idContract=${idContract}&type=${type}`;
+        return this.http.get<any>(Gurl);
+    }
+
 }

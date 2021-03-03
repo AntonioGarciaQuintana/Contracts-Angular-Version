@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   url: 'localhost',
-  contracts: '/Contract'
+  contracts: '/Contract',
+  payment: '/Payment'
 };

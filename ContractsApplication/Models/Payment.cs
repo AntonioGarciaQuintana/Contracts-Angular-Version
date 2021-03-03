@@ -20,7 +20,7 @@ namespace ContractsApplication.Models
         public string Name { get; set; }
         public PaymentTypeEnum Type { get; set; }
         public PaymentMethodEnum Method { get; set; }
-        public decimal Amount { get; set; }
+        public double Amount { get; set; }
 
         [DataType(DataType.Date)]
         [JsonConverter(typeof(JsonDateConverter))]

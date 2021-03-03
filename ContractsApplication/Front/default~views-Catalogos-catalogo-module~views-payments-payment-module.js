@@ -172,6 +172,7 @@ let commonService = class commonService {
     constructor(http) {
         this.http = http;
         this.urlContracts = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].contracts;
+        this.urlPayment = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].payment;
         this.getAllContracts = () => {
             const Gurl = `${this.urlContracts + '/GetAllContracts'}`;
             return this.http.get(Gurl);
@@ -183,6 +184,14 @@ let commonService = class commonService {
         this.onDeleteImageContract = (idImage) => {
             const Gurl = `${this.urlContracts + '/DeleteImageContract'}/?idImage=${idImage}`;
             return this.http.delete(Gurl);
+        };
+        this.getAllPaymentContract = (idContract, type) => {
+            const Gurl = `${this.urlPayment + '/GetAllPayment'}/?idContract=${idContract}&type=${type}`;
+            return this.http.get(Gurl);
+        };
+        this.getAmountResumeByContract = (idContract, type) => {
+            const Gurl = `${this.urlPayment + '/GetAmountResumeByContract'}/?idContract=${idContract}&type=${type}`;
+            return this.http.get(Gurl);
         };
     }
     getPages(page, size, sort, search) {
@@ -200,6 +209,9 @@ let commonService = class commonService {
     }
     onSaveImageContract(obj) {
         return this.http.post(this.urlContracts + '/SaveImageContract', obj);
+    }
+    onSavePayment(obj) {
+        return this.http.post(this.urlPayment + '/SavePayment', obj);
     }
 };
 commonService.ctorParameters = () => [
