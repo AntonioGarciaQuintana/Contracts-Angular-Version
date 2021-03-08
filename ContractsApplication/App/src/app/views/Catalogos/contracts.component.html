@@ -58,7 +58,7 @@
                             <td>{{contract.Name}}</td>
                             <td>{{contract.StartDate}} al {{contract.EndDate}}</td>
                             <td>{{contract.Acres}}</td>
-                            <td>{{contract.Amount}}</td>
+                            <td>{{contract.Amount | currency}}</td>
                             <td>
                                 <button *ngIf="!disableCancel" type="button" class="btn btn-info active"
                                     tooltip="Click para cancelar el contrato" aria-pressed="true"
@@ -69,10 +69,10 @@
                                     (click)="goToRegister(contract.Id)"><i class="fa fa-pencil"></i></button>
                                 <button *ngIf="!disablePamentContract" type="button" class="btn btn-info active"
                                     tooltip="Click para registar pago renta" aria-pressed="true"
-                                    (click)="goToPaymentRegister(contract.Id)"><i class="fa cil-money "></i></button>
+                                    (click)="goToPaymentRegister(contract)"><i class="fa cil-money "></i></button>
                                 <button *ngIf="!disablePamentWater" type="button" class="btn btn-info active"
                                     tooltip="Click para registar pago de agua" aria-pressed="true"
-                                    (click)="goToRegister(contract.Id)"><i class="fa cil-pool active"></i></button>
+                                    (click)="goToWaterPayment(contract)"><i class="fa cil-pool active"></i></button>
                                 
 
                                 

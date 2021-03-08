@@ -100,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Services_common_service_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../Services/common-service.service */ "7DoW");
 /* harmony import */ var _Services_notification_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Services/notification.service */ "B+sD");
 /* harmony import */ var _Services_SharedService_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../Services/SharedService.service */ "4tVF");
-/* harmony import */ var _Catalogos_contracts_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../Catalogos/contracts.component */ "EDVH");
+/* harmony import */ var _Catalogos_catalogo_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../Catalogos/catalogo.module */ "/DOo");
 /* harmony import */ var _pipe_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../pipe.module */ "K95I");
 /* harmony import */ var _amount_resume_by_contract_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./amount-resume-by-contract.component */ "Wcb7");
 /* harmony import */ var _payment_contract_register_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./payment-contract-register.component */ "xEPz");
@@ -144,12 +144,12 @@ PaymentModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             ngx_loading__WEBPACK_IMPORTED_MODULE_8__["NgxLoadingModule"].forRoot({}),
             ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_5__["BsDatepickerModule"].forRoot(),
             ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_6__["ModalModule"].forRoot(),
-            ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_7__["TooltipModule"].forRoot()
+            ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_7__["TooltipModule"].forRoot(),
+            _Catalogos_catalogo_module__WEBPACK_IMPORTED_MODULE_14__["CatalogoModule"]
         ],
         declarations: [
             _payment_contract_component__WEBPACK_IMPORTED_MODULE_18__["PaymentContractComponent"],
             _payment_water_component__WEBPACK_IMPORTED_MODULE_20__["PaymentWaterComponent"],
-            _Catalogos_contracts_component__WEBPACK_IMPORTED_MODULE_14__["ContractsComponent"],
             _payment_contract_register_component__WEBPACK_IMPORTED_MODULE_17__["PaymentContractRegisterComponent"],
             _amount_resume_by_contract_component__WEBPACK_IMPORTED_MODULE_16__["AmountResumeByContractComponent"]
         ],
@@ -174,7 +174,7 @@ PaymentModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-md-7\">\r\n        <app-amount-resume [idContract]=\"idContract\" [PaymentType]=\"PaymentType\"></app-amount-resume>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                <i class=\"fa fa-align-justify\"></i> Imagenes del contrato\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <table class=\"table table-bordered\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th>#</th>\r\n                            <th>Nombre</th>\r\n                            <th>Cantidad</th>\r\n                            <th>Acciones</th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let payment of paymentList\">\r\n                            <td>{{payment.Id}}</td>\r\n                            <td>{{payment.Name}}</td>\r\n                            <td>{{payment.Amount}}</td>\r\n                            <td>\r\n                                <button type=\"button\" class=\"btn btn-warning active\" tooltip=\"Click para editar el pago\"\r\n                                    aria-pressed=\"true\" (click)=\"onEditPayment(payment)\"><i\r\n                                        class=\"fa fa-pencil\"></i></button>\r\n                                <button type=\"button\" class=\"btn btn-danger active\" aria-pressed=\"true\"\r\n                                    (click)=\"dangerModal.show();idPayment=payment.Id;paymentName=payment.Name;\"\r\n                                    tooltip=\"Click para eliminar el pago\"><i class=\"fa fa-trash-o\"></i></button>\r\n                                <button *ngIf=\"payment.Base\" type=\"button\" class=\"btn btn-info active\"\r\n                                    aria-pressed=\"true\" tooltip=\"Click para descargar la imagen\"\r\n                                    (click)=\"onDownload(payment)\"><i class=\"fa cil-cloud-download\"></i></button>\r\n                            </td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-md-5\">\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                <strong>Registro de pago de Contrato</strong>\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <form [formGroup]=\"paymentForm\" autocomplete=\"off\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"company\">Nombre del beneficiario</label>\r\n                        <input type=\"text\" class=\"form-control\" id=\"company\" placeholder=\"\"\r\n                            formControlName=\"nameControl\" maxlength=\"150\">\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"form-group col-sm-6\">\r\n                            <label for=\"city\">Metodo de pago</label>\r\n                            <select class=\"form-control\" id=\"\" [formControl]=\"f.methodPayControl\">\r\n                                <option value=\"\">Seleccione un metodo de pago</option>\r\n                                <option value=\"0\">Cheque</option>\r\n                                <option value=\"1\">Efectivo</option>\r\n                            </select>\r\n\r\n                        </div>\r\n                        <div class=\"form-group col-sm-6\">\r\n                            <label for=\"postal-code\">Fecha</label>\r\n                            <div class=\"input-group\">\r\n                                <input type=\"text\" size=\"16\" readonly [bsConfig]=\"{ dateInputFormat: 'DD/MM/YYYY'}\"\r\n                                    #dp=\"bsDatepicker\" placeholder=\"Seleccione una fecha\" formControlName=\"dateControl\"\r\n                                    class=\"form-control\" bsDatepicker>\r\n                                <span class=\"input-group-append\">\r\n                                    <button class=\"btn btn-success\" (click)=\"dp.toggle()\"\r\n                                        [attr.aria-expanded]=\"dp.isOpen\"><i class=\"fa fa-calendar\"\r\n                                            aria-hidden=\"true\"></i></button>\r\n                                </span>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"form-group col-sm-6\">\r\n                            <label for=\"postal-code\">Monto</label>\r\n                            <input type=\"text\" class=\"form-control\" id=\"postal-code\" appOnlyNumbers\r\n                                formControlName=\"amountControl\" placeholder=\"\">\r\n                        </div>\r\n                        <div class=\"form-group col-sm-6\" *ngIf=\"f.methodPayControl.value === '0'\">\r\n                            <label for=\"city\">Banco</label>\r\n                            <input type=\"text\" class=\"form-control\" id=\"vat\" maxlength=\"100\"\r\n                                formControlName=\"bankControl\" placeholder=\"\">\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-group\" *ngIf=\"f.methodPayControl.value === '0'\">\r\n                        <label for=\"vat\">No. Cheque</label>\r\n                        <input type=\"text\" class=\"form-control\" id=\"vat2\" maxlength=\"100\"\r\n                            formControlName=\"noCheckControl\" placeholder=\"\">\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"vat\">Imagen</label>\r\n                        <input #fileInput type=\"file\" (change)=\"handleFileInput($event.target.files)\" class=\"dropify\"\r\n                            data-max-file-size=\"20M\" (click)=\"fileInput.value = null\"\r\n                            data-allowed-file-extensions=\"png jpg bmp jpeg\" data-show-loader=\"false\"\r\n                            data-height=\"150\" />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"vat\">Descripción</label>\r\n                        <textarea id=\"description\" name=\"textarea-input\" maxlength=\"500\" rows=\"3\" class=\"form-control\"\r\n                            formControlName=\"descriptionControl\" maxlength=\"500\"></textarea>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n            <div class=\"card-footer\">\r\n                <button type=\"submit\" class=\"btn btn-primary float-right\" style=\"margin-left: 9px\"\r\n                    tooltip=\"Click para guardar los cambios del pago\" (click)=\"onSave()\"><i\r\n                        class=\"fa fa-dot-circle-o\"></i>\r\n                    Guardar</button>\r\n                <button type=\"reset\" class=\"btn btn-danger float-right\"\r\n                    tooltip=\"Click para cancelar los cambios del pago\" (click)=\"onResetForm()\"><i class=\"fa fa-ban\"></i>\r\n                    Cancelar</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div bsModal #dangerModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog modal-danger\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h4 class=\"modal-title\">Mensaje del sistema</h4>\r\n                <button type=\"button\" class=\"close\" (click)=\"dangerModal.hide()\" aria-label=\"Close\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <h5>Está seguro que desea eliminar el registro de {{paymentName}} del contrato?</h5>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-secondary\" (click)=\"dangerModal.hide()\">Cancelar</button>\r\n                <button type=\"button\" class=\"btn btn-danger\" (click)=\"onDeleteImage();dangerModal.hide()\">&nbsp;&nbsp;Sí\r\n                    &nbsp;&nbsp;</button>\r\n            </div>\r\n        </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->");
+/* harmony default export */ __webpack_exports__["default"] = ("<h3 *ngIf=\"PaymentType === 0\">Abonos del Contrato: {{NameContract}}</h3>\r\n<h3 *ngIf=\"PaymentType === 1\">Pagos agua del Contrato: {{NameContract}}</h3>\r\n<div class=\"row\">\r\n    <div class=\"col-md-7\">\r\n        <app-amount-resume [idContract]=\"idContract\" [PaymentType]=\"PaymentType\"></app-amount-resume>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                <i class=\"fa fa-align-justify\"></i> Imagenes del contrato\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <table class=\"table table-bordered\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th>#</th>\r\n                            <th>Nombre</th>\r\n                            <th>Cantidad</th>\r\n                            <th>Acciones</th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let payment of paymentList\">\r\n                            <td>{{payment.Id}}</td>\r\n                            <td>{{payment.Name}}</td>\r\n                            <td>{{payment.Amount | currency}}</td>\r\n                            <td>\r\n                                <button type=\"button\" class=\"btn btn-warning active\" tooltip=\"Click para editar el pago\"\r\n                                    aria-pressed=\"true\" (click)=\"onEditPayment(payment)\"><i\r\n                                        class=\"fa fa-pencil\"></i></button>\r\n                                <button type=\"button\" class=\"btn btn-danger active\" aria-pressed=\"true\"\r\n                                    (click)=\"dangerModal.show();paymentSelected=payment;\"\r\n                                    tooltip=\"Click para eliminar el pago\"><i class=\"fa fa-trash-o\"></i></button>\r\n                                <button *ngIf=\"payment.Base\" type=\"button\" class=\"btn btn-info active\"\r\n                                    aria-pressed=\"true\" tooltip=\"Click para descargar la imagen\"\r\n                                    (click)=\"onDownload(payment)\"><i class=\"fa cil-cloud-download\"></i></button>\r\n                            </td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-md-5\">\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                <strong>Registro de pago</strong>\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <form [formGroup]=\"paymentForm\" autocomplete=\"off\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"company\">Nombre del beneficiario</label>\r\n                        <input type=\"text\" class=\"form-control\" id=\"company\" placeholder=\"\"\r\n                            formControlName=\"nameControl\" maxlength=\"150\">\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"form-group col-sm-6\">\r\n                            <label for=\"city\">Metodo de pago</label>\r\n                            <select class=\"form-control\" id=\"\" [formControl]=\"f.methodPayControl\">\r\n                                <option value=\"\">Seleccione un metodo de pago</option>\r\n                                <option value=\"0\">Cheque</option>\r\n                                <option value=\"1\">Efectivo</option>\r\n                            </select>\r\n\r\n                        </div>\r\n                        <div class=\"form-group col-sm-6\">\r\n                            <label for=\"postal-code\">Fecha</label>\r\n                            <div class=\"input-group\">\r\n                                <input type=\"text\" size=\"16\" readonly [bsConfig]=\"{ dateInputFormat: 'DD/MM/YYYY'}\"\r\n                                    #dp=\"bsDatepicker\" placeholder=\"Seleccione una fecha\" formControlName=\"dateControl\"\r\n                                    class=\"form-control\" bsDatepicker>\r\n                                <span class=\"input-group-append\">\r\n                                    <button class=\"btn btn-success\" (click)=\"dp.toggle()\"\r\n                                        [attr.aria-expanded]=\"dp.isOpen\"><i class=\"fa fa-calendar\"\r\n                                            aria-hidden=\"true\"></i></button>\r\n                                </span>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"form-group col-sm-6\">\r\n                            <label for=\"postal-code\">Monto</label>\r\n                            <input type=\"text\" class=\"form-control\" id=\"postal-code\" appOnlyNumbers\r\n                                formControlName=\"amountControl\" placeholder=\"\">\r\n                        </div>\r\n                        <div class=\"form-group col-sm-6\" *ngIf=\"f.methodPayControl.value === '0'\">\r\n                            <label for=\"city\">Banco</label>\r\n                            <input type=\"text\" class=\"form-control\" id=\"vat\" maxlength=\"100\"\r\n                                formControlName=\"bankControl\" placeholder=\"\">\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-group\" *ngIf=\"f.methodPayControl.value === '0'\">\r\n                        <label for=\"vat\">No. Cheque</label>\r\n                        <input type=\"text\" class=\"form-control\" id=\"vat2\" maxlength=\"100\"\r\n                            formControlName=\"noCheckControl\" placeholder=\"\">\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"vat\">Imagen &nbsp; <button [hidden]=\"paymentSelected?.Base === null\" type=\"button\"\r\n                                class=\"btn btn-danger active\" aria-pressed=\"true\" (click)=\"removeImage();\"\r\n                                tooltip=\"Click para remover la imagen\"><i class=\"fa fa-trash-o\"></i></button></label>\r\n                        <div [hidden]=\"paymentSelected?.Base === null\">\r\n                            <img src=\"{{paymentSelected?.Base}}\" height=\"150\">\r\n                        </div>\r\n                        <div [hidden]=\"paymentSelected?.Base !== null\">\r\n                            <input #fileInput type=\"file\" (change)=\"handleFileInput($event.target.files)\"\r\n                                class=\"dropify\" data-max-file-size=\"20M\" (click)=\"fileInput.value = null\"\r\n                                data-allowed-file-extensions=\"png jpg bmp jpeg\" data-show-loader=\"false\"\r\n                                data-height=\"150\" />\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"vat\">Descripción</label>\r\n                        <textarea id=\"description\" name=\"textarea-input\" maxlength=\"500\" rows=\"3\" class=\"form-control\"\r\n                            formControlName=\"descriptionControl\" maxlength=\"500\"></textarea>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n            <div class=\"card-footer\">\r\n                <button type=\"submit\" class=\"btn btn-primary float-right\" style=\"margin-left: 9px\"\r\n                    tooltip=\"Click para guardar los cambios del pago\" (click)=\"onSave()\"[disabled]=\"paymentForm.invalid\"><i\r\n                        class=\"fa fa-dot-circle-o\"></i>\r\n                    Guardar</button>\r\n                <button type=\"reset\" class=\"btn btn-danger float-right\"\r\n                    tooltip=\"Click para cancelar los cambios del pago\" (click)=\"onResetForm()\"><i class=\"fa fa-ban\"></i>\r\n                    Cancelar</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div bsModal #dangerModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog modal-danger\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h4 class=\"modal-title\">Mensaje del sistema</h4>\r\n                <button type=\"button\" class=\"close\" (click)=\"dangerModal.hide()\" aria-label=\"Close\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <h5>Está seguro que desea eliminar el registro de pago {{paymentSelected?.Name}} del contrato?</h5>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-secondary\" (click)=\"dangerModal.hide()\">Cancelar</button>\r\n                <button type=\"button\" class=\"btn btn-danger\" (click)=\"onDeletePayment();dangerModal.hide()\">&nbsp;&nbsp;Sí\r\n                    &nbsp;&nbsp;</button>\r\n            </div>\r\n        </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->");
 
 /***/ }),
 
@@ -211,7 +211,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let PaymentWaterComponent = class PaymentWaterComponent {
-    constructor() { }
+    constructor() {
+        this.disableEdit = true;
+        this.disableCancel = true;
+        this.disablePamentContract = true;
+        this.disablePamentWater = false;
+    }
 };
 PaymentWaterComponent.ctorParameters = () => [];
 PaymentWaterComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -307,7 +312,7 @@ AmountResumeByContractComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__d
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h1>pago de agua</h1>");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-contract-list [disableEdit]=\"disableEdit\" [disableCancel]=\"disableCancel\" [disablePamentContract]=\"disablePamentContract\" [disablePamentWater]=\"disablePamentWater\"></app-contract-list>");
 
 /***/ }),
 
@@ -425,42 +430,24 @@ let PaymentContractRegisterComponent = class PaymentContractRegisterComponent {
         this._shareService = _shareService;
         this.idContract = 0;
         this.paymentList = [];
-        this.paymentName = '';
-        this.idPayment = 0;
+        this.NameContract = '';
         this.PaymentType = 0;
         this.clearDropofy = () => {
             $('.dropify-clear').trigger('click');
         };
-        this.initDropify = (payment) => {
-            if (payment !== undefined && payment.Base) {
-                this.dropifyElement = $('.dropify').dropify({
-                    defaultFile: payment.Base,
-                    messages: {
-                        'default': 'Imagen',
-                        'replace': 'Imagen',
-                        'remove': 'Eliminar',
-                        'error': 'Ooops, algo paso mal'
-                    },
-                    error: {
-                        'fileSize': 'El tamaño maximo de la imagen permitido es de ({{ value }}).',
-                        'imageFormat': 'El tipo de archivo es incorrecto solo se permiten imagenes de tipo {{ value }}.'
-                    }
-                });
-            }
-            else {
-                this.dropifyElement = $('.dropify').dropify({
-                    messages: {
-                        'default': 'Imagen',
-                        'replace': 'Imagen',
-                        'remove': 'Eliminar',
-                        'error': 'Ooops, algo paso mal'
-                    },
-                    error: {
-                        'fileSize': 'El tamaño maximo de la imagen permitido es de ({{ value }}).',
-                        'imageFormat': 'El tipo de archivo es incorrecto solo se permiten imagenes de tipo {{ value }}.'
-                    }
-                });
-            }
+        this.initDropify = () => {
+            this.dropifyElement = $('.dropify').dropify({
+                messages: {
+                    'default': 'Imagen',
+                    'replace': 'Imagen',
+                    'remove': 'Eliminar',
+                    'error': 'Ooops, algo paso mal'
+                },
+                error: {
+                    'fileSize': 'El tamaño maximo de la imagen permitido es de ({{ value }}).',
+                    'imageFormat': 'El tipo de archivo es incorrecto solo se permiten imagenes de tipo {{ value }}.'
+                }
+            });
         };
         this.handleFileInput = (files) => {
             if (files) {
@@ -479,7 +466,7 @@ let PaymentContractRegisterComponent = class PaymentContractRegisterComponent {
         };
         this.getPaymentObject = () => {
             const pay = new _model_payment__WEBPACK_IMPORTED_MODULE_8__["Payment"]();
-            pay.Id = this.idPayment;
+            pay.Id = this.paymentSelected === undefined ? 0 : this.paymentSelected.Id;
             pay.IdContract = this.idContract;
             pay.Name = this.f['nameControl'].value;
             pay.Method = this.f['methodPayControl'].value;
@@ -493,13 +480,17 @@ let PaymentContractRegisterComponent = class PaymentContractRegisterComponent {
                 pay.NameImage = this.imageSelected.Name;
                 pay.Base = this.imageSelected.Base;
             }
+            else if (this.paymentSelected !== undefined && this.paymentSelected.Base !== null) {
+                pay.NameImage = this.paymentSelected.NameImage;
+                pay.Base = this.paymentSelected.Base;
+            }
             return pay;
         };
         this.onResetForm = () => {
             this.paymentForm.reset('');
             this.clearDropofy();
-            this.idPayment = 0;
             this.imageSelected = undefined;
+            this.paymentSelected = undefined;
         };
         this.onSave = () => {
             const payment = this.getPaymentObject();
@@ -521,6 +512,19 @@ let PaymentContractRegisterComponent = class PaymentContractRegisterComponent {
                 this._notification.error('Ha ocurrido un error al Consultar la lista de pagos');
             });
         };
+        this.removeImage = () => {
+            this.paymentSelected.Base = null;
+            this.paymentSelected.NameImage = null;
+        };
+        this.onDeletePayment = () => {
+            this._commonService.OnDeletePayment(this.paymentSelected.Id).toPromise()
+                .then(result => {
+                this._notification.success('El pago se ha eliminado con éxito');
+                this.onGetAllPaymentContrac();
+            }).catch(error => {
+                this._notification.error('Ha ocurrido un error al eliminar el pago');
+            });
+        };
         Object(ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_5__["defineLocale"])('es', ngx_bootstrap_chronos__WEBPACK_IMPORTED_MODULE_5__["esLocale"]);
         this._localeService.use('es');
     }
@@ -536,17 +540,19 @@ let PaymentContractRegisterComponent = class PaymentContractRegisterComponent {
         });
         this._route.params.subscribe(params => {
             this.idContract = params['id'] !== undefined ? +params['id'] : 0;
+            this.NameContract = params['name'] !== undefined ? params['name'] : '';
+            this.PaymentType = params['type'] !== undefined ? +params['type'] : 0;
         });
         this.clearDropofy();
         this.initDropify();
         this.dropifyElement.on('dropify.afterClear', () => {
-            this.paymentSelected = undefined;
+            this.imageSelected = undefined;
         });
         this.onGetAllPaymentContrac();
     }
     get f() { return this.paymentForm.controls; }
     onEditPayment(payment) {
-        this.idPayment = payment.Id;
+        this.paymentSelected = Object.assign({}, payment);
         this.f['nameControl'].setValue(payment.Name);
         this.f['methodPayControl'].setValue(payment.Method + '');
         this.f['dateControl'].setValue(payment.Date);
@@ -554,9 +560,6 @@ let PaymentContractRegisterComponent = class PaymentContractRegisterComponent {
         this.f['bankControl'].setValue(payment.Bank);
         this.f['noCheckControl'].setValue(payment.NoCheck);
         this.f['descriptionControl'].setValue(payment.Description);
-        if (payment.Base) {
-            this.initDropify(payment);
-        }
     }
     onDownload(payment) {
         const a = document.createElement('a');
@@ -601,7 +604,7 @@ PaymentContractRegisterComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-6 col-lg-6\">\r\n        <div class=\"card\">\r\n          <div class=\"card-body p-3 clearfix\">\r\n            <i class=\"fa fa-laptop bg-info p-3 font-2xl mr-3 float-left\"></i>\r\n            <div class=\"h5 text-info mb-0 mt-2\">${{TotalPayment}}</div>\r\n            <div class=\"text-muted text-uppercase font-weight-bold font-xs\">Total cantidad abonada</div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6 col-lg-6\">\r\n        <div class=\"card\">\r\n          <div class=\"card-body p-3 clearfix\">\r\n            <i class=\"fa fa-bell bg-danger p-3 font-2xl mr-3 float-left\"></i>\r\n            <div class=\"h5 text-danger mb-0 mt-2\">${{TotalRestremaining}}</div>\r\n            <div class=\"text-muted text-uppercase font-weight-bold font-xs\">Cantidad restante</div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-6 col-lg-6\">\r\n        <div class=\"card\">\r\n          <div class=\"card-body p-3 clearfix\">\r\n            <i class=\"fa fa-laptop bg-info p-3 font-2xl mr-3 float-left\"></i>\r\n            <div class=\"h5 text-info mb-0 mt-2\">{{TotalPayment | currency}}</div>\r\n            <div class=\"text-muted text-uppercase font-weight-bold font-xs\">Total cantidad abonada</div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6 col-lg-6\" *ngIf=\"PaymentType === 0\">\r\n        <div class=\"card\">\r\n          <div class=\"card-body p-3 clearfix\">\r\n            <i class=\"fa fa-bell bg-danger p-3 font-2xl mr-3 float-left\"></i>\r\n            <div class=\"h5 text-danger mb-0 mt-2\">{{TotalRestremaining | currency}}</div>\r\n            <div class=\"text-muted text-uppercase font-weight-bold font-xs\">Cantidad restante</div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n</div>");
 
 /***/ })
 

@@ -90,12 +90,13 @@ export class ContractsComponent implements OnInit {
         }
 
     }
-    goToPaymentRegister(idContract?: number){
-        if (idContract !== undefined) {
-            this._router.navigate(['/payment/payment-contract-register', { id: idContract }], { relativeTo: this._route });
-        } else {
-            this._router.navigate(['/payment/payment-contract-register'], { relativeTo: this._route });
-        }
+    goToPaymentRegister(contract: Contract) {
+        this._router.navigate(['/payment/payment-contract-register',
+            { id: contract.Id, name: contract.Name, type: 0 }], { relativeTo: this._route });
+    }
+    goToWaterPayment = (contract: Contract) => {
+        this._router.navigate(['/payment/payment-contract-register',
+            { id: contract.Id, name: contract.Name, type: 1 }], { relativeTo: this._route });
     }
 
     onCleanFilter = () => {

@@ -125,6 +125,23 @@ namespace ContractsApplication.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult GetResumeContract(int idContract)
+        {
+            try
+            {
+                var result = ContractService.GetResumeContract(idContract);
+                string microsoftJson = JsonConvert.SerializeObject(result, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
+            }
+            catch (Exception e)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        
+
         [HttpDelete]
         public ActionResult DeleteImageContract(int idImage)
         {

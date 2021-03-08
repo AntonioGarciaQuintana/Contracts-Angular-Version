@@ -75,6 +75,34 @@ namespace ContractsApplication.Controllers
             }
         }
 
+        [HttpDelete]
+        public ActionResult DeletePayment(int idPayment)
+        {
+            try
+            {
+                IPaymentService.DeletePayment(idPayment);
+                return Json(true);
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
+
+        [HttpGet]
+        public ActionResult GetInforDashboard()
+        {
+            try
+            {
+                var result = IPaymentService.GetInfoDashboard();
+                string microsoftJson = JsonConvert.SerializeObject(result, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                return new ContentResult { Content = microsoftJson, ContentType = "application/json" };
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

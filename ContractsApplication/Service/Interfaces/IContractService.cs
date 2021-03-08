@@ -23,5 +23,7 @@ namespace ContractsApplication.Service.Interfaces
 
         void SaveImageContract(ImageContract imageContract);
 
+        ResumeContractDTO GetResumeContract(int idContrat);
+
     }
 }

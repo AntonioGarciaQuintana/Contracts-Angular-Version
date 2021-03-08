@@ -691,7 +691,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             ng2_charts__WEBPACK_IMPORTED_MODULE_17__["ChartsModule"],
             _coreui_icons_angular__WEBPACK_IMPORTED_MODULE_6__["IconModule"],
             _coreui_icons_angular__WEBPACK_IMPORTED_MODULE_6__["IconSetModule"].forRoot(),
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_19__["ToastrModule"].forRoot()
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_19__["ToastrModule"].forRoot(),
         ],
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
@@ -801,11 +801,11 @@ const routes = [
         children: [
             {
                 path: 'catalogo',
-                loadChildren: () => Promise.all(/*! import() | views-Catalogos-catalogo-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-notifications-notifications-module~views-payments-paym~4d5c0880"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-payments-payment-module"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-payments-payment-module"), __webpack_require__.e("views-Catalogos-catalogo-module")]).then(__webpack_require__.bind(null, /*! ./views/Catalogos/catalogo.module */ "/DOo")).then(m => m.CatalogoModule)
+                loadChildren: () => Promise.all(/*! import() | views-Catalogos-catalogo-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-dashboard-dashboard-module~views-payments-payment-module"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-notifications-notifications-module~views-payments-paym~4d5c0880"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-payments-payment-module"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-payments-payment-module")]).then(__webpack_require__.bind(null, /*! ./views/Catalogos/catalogo.module */ "/DOo")).then(m => m.CatalogoModule)
             },
             {
                 path: 'payment',
-                loadChildren: () => Promise.all(/*! import() | views-payments-payment-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-notifications-notifications-module~views-payments-paym~4d5c0880"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-payments-payment-module"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-payments-payment-module"), __webpack_require__.e("views-payments-payment-module")]).then(__webpack_require__.bind(null, /*! ./views/payments/payment.module */ "SEax")).then(m => m.PaymentModule)
+                loadChildren: () => Promise.all(/*! import() | views-payments-payment-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-dashboard-dashboard-module~views-payments-payment-module"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-notifications-notifications-module~views-payments-paym~4d5c0880"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-payments-payment-module"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-payments-payment-module"), __webpack_require__.e("views-payments-payment-module")]).then(__webpack_require__.bind(null, /*! ./views/payments/payment.module */ "SEax")).then(m => m.PaymentModule)
             },
             {
                 path: 'base',
@@ -821,7 +821,7 @@ const routes = [
             },
             {
                 path: 'dashboard',
-                loadChildren: () => Promise.all(/*! import() | views-dashboard-dashboard-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("default~views-dashboard-dashboard-module~views-theme-theme-module~views-widgets-widgets-module"), __webpack_require__.e("common"), __webpack_require__.e("views-dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ./views/dashboard/dashboard.module */ "6dU7")).then(m => m.DashboardModule)
+                loadChildren: () => Promise.all(/*! import() | views-dashboard-dashboard-module */[__webpack_require__.e("default~views-Catalogos-catalogo-module~views-base-base-module~views-buttons-buttons-module~views-da~1aafd415"), __webpack_require__.e("default~views-Catalogos-catalogo-module~views-dashboard-dashboard-module~views-payments-payment-module"), __webpack_require__.e("views-dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ./views/dashboard/dashboard.module */ "6dU7")).then(m => m.DashboardModule)
             },
             {
                 path: 'icons',
@@ -833,11 +833,11 @@ const routes = [
             },
             {
                 path: 'theme',
-                loadChildren: () => Promise.all(/*! import() | views-theme-theme-module */[__webpack_require__.e("default~views-dashboard-dashboard-module~views-theme-theme-module~views-widgets-widgets-module"), __webpack_require__.e("views-theme-theme-module")]).then(__webpack_require__.bind(null, /*! ./views/theme/theme.module */ "AgMk")).then(m => m.ThemeModule)
+                loadChildren: () => Promise.all(/*! import() | views-theme-theme-module */[__webpack_require__.e("default~views-theme-theme-module~views-widgets-widgets-module"), __webpack_require__.e("views-theme-theme-module")]).then(__webpack_require__.bind(null, /*! ./views/theme/theme.module */ "AgMk")).then(m => m.ThemeModule)
             },
             {
                 path: 'widgets',
-                loadChildren: () => Promise.all(/*! import() | views-widgets-widgets-module */[__webpack_require__.e("default~views-dashboard-dashboard-module~views-theme-theme-module~views-widgets-widgets-module"), __webpack_require__.e("common"), __webpack_require__.e("views-widgets-widgets-module")]).then(__webpack_require__.bind(null, /*! ./views/widgets/widgets.module */ "XVX6")).then(m => m.WidgetsModule)
+                loadChildren: () => Promise.all(/*! import() | views-widgets-widgets-module */[__webpack_require__.e("default~views-theme-theme-module~views-widgets-widgets-module"), __webpack_require__.e("views-widgets-widgets-module")]).then(__webpack_require__.bind(null, /*! ./views/widgets/widgets.module */ "XVX6")).then(m => m.WidgetsModule)
             }
         ]
     },

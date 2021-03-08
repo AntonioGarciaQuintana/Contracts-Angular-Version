@@ -12,7 +12,6 @@ import { commonService } from "../../Services/common-service.service";
 import { NotificationService } from "../../Services/notification.service";
 import { SharedService } from "../../Services/SharedService.service";
 import { CatalogoModule } from "../Catalogos/catalogo.module";
-import { ContractsComponent } from "../Catalogos/contracts.component";
 import { ApplicationPipeModule } from "../pipe.module";
 import { AmountResumeByContractComponent } from "./amount-resume-by-contract.component";
 import { PaymentContractRegisterComponent } from "./payment-contract-register.component";
@@ -33,12 +32,12 @@ import { PaymentWaterComponent } from "./payment-water.component";
         NgxLoadingModule.forRoot({}),
         BsDatepickerModule.forRoot(),
         ModalModule.forRoot(),
-        TooltipModule.forRoot()
+        TooltipModule.forRoot(),
+        CatalogoModule
     ],
     declarations: [
         PaymentContractComponent,
         PaymentWaterComponent,
-        ContractsComponent,
         PaymentContractRegisterComponent,
         AmountResumeByContractComponent
     ],

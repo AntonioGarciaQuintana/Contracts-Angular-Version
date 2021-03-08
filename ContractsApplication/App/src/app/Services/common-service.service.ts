@@ -60,4 +60,19 @@ export class commonService {
         return this.http.get<any>(Gurl);
     }
 
+    OnDeletePayment = (idPayment: number) => {
+        const Gurl = `${this.urlPayment + '/DeletePayment'}/?idPayment=${idPayment}`;
+        return this.http.delete<any>(Gurl);
+    }
+
+    onGetResumeContract = (idContract: number) => {
+        const Gurl = `${this.urlContracts + '/GetResumeContract'}/?idContract=${idContract}`;
+        return this.http.get<any>(Gurl);
+    }
+
+    onGetDashboardInfo = () => {
+        const Gurl = `${this.urlPayment + '/GetInforDashboard'}`;
+        return this.http.get<any>(Gurl);
+    }
+
 }

@@ -46,7 +46,11 @@ import { ContractRegisterComponent } from "./contract-register.component";
         ContractRegisterComponent
     ],
     exports: [
-
+        ContractsComponent,
+        ContractManageComponent,
+        ImportImageComponent,
+        ContractResumeComponent,
+        ContractRegisterComponent
     ],
     providers: [
         commonService,

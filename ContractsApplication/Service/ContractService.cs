@@ -1,5 +1,6 @@
 ﻿using ContractsApplication.Models;
 using ContractsApplication.Models.DTO;
+using ContractsApplication.Models.Enums;
 using ContractsApplication.Repository;
 using ContractsApplication.Service.Interfaces;
 using System;
@@ -69,6 +70,62 @@ namespace ContractsApplication.Service
             dataTable.TotalElements = total;
             dataTable.Data = contractList.Skip(page).Take(size).ToList();
             return dataTable;
+        }
+
+        public ResumeContractDTO GetResumeContract(int idContrat)
+        {
+            var paymentList = UnitOfWork.GetRepository<Payment>().GetAll().Where(s => s.isDelete == false && s.IdContract == idContrat).OrderBy(d => d.Date).ToList();
+            var resume = new ResumeContractDTO();
+            resume.BarListYear = new List<string>();
+            paymentList.ForEach(s =>
+            {
+                if (s.Type == PaymentTypeEnum.Contract) {
+                    resume.TotalPaymentContract += s.Amount;
+                }
+
+                if (s.Type == PaymentTypeEnum.Water) {
+                    resume.TotalWaterPayment += s.Amount;
+                }
+
+                if (s.Date != null) {
+                    if (!resume.BarListYear.Contains((s.Date.Year + "")))
+                    {
+                        resume.BarListYear.Add(s.Date.Year + "");
+                    }
+                }
+                
+            });
+
+            resume.DataBarChart = GetDataChartBart(resume.BarListYear, paymentList);
+
+            return resume;
+        }
+
+        public List<DataChartDTO> GetDataChartBart(List<string> years, List<Payment> payments) {
+            var dataPaymentDTO = new DataChartDTO("Abonos al contrato");
+            var dataWaterDTO = new DataChartDTO("Pagos de agua");
+            years.ForEach(d =>
+            {
+                double totalValuePaymentByYear = 0.0;
+                double totalValuewaterByYear = 0.0;
+                payments.ForEach(s =>
+                {
+                    if ((s.Date.Year + "") == d && s.Type == PaymentTypeEnum.Contract) {
+                        totalValuePaymentByYear += s.Amount;
+                    }
+                    if ((s.Date.Year + "") == d && s.Type == PaymentTypeEnum.Water)
+                    {
+                        totalValuewaterByYear += s.Amount;
+                    }
+                });
+                dataPaymentDTO.data.Add(totalValuePaymentByYear);
+                dataWaterDTO.data.Add(totalValuewaterByYear);
+            });
+            List<DataChartDTO> ret = new List<DataChartDTO>();
+            ret.Add(dataPaymentDTO);
+            ret.Add(dataWaterDTO);
+
+            return ret;
         }
 
         public void SaveImageContract(ImageContract imageContract)

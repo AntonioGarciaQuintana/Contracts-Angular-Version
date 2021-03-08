@@ -4,5 +4,11 @@ import { Component } from "@angular/core";
     templateUrl: './payment-water.component.html'
 })
 export class PaymentWaterComponent {
-    constructor(){}
+
+    disableEdit = true;
+    disableCancel = true;
+    disablePamentContract = true;
+    disablePamentWater = false;
+
+    constructor() { }
 }

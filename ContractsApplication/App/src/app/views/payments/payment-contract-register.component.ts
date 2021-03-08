@@ -23,8 +23,7 @@ export class PaymentContractRegisterComponent implements OnInit {
     idContract = 0;
     imageSelected: ImageDto;
     paymentList: Payment[] = [];
-    paymentName = '';
-    idPayment = 0;
+    NameContract = '';
 
     @Input() PaymentType = 0;
 
@@ -55,6 +54,8 @@ export class PaymentContractRegisterComponent implements OnInit {
 
         this._route.params.subscribe(params => {
             this.idContract = params['id'] !== undefined ? +params['id'] : 0;
+            this.NameContract = params['name'] !== undefined ? params['name'] : '';
+            this.PaymentType = params['type'] !== undefined ? +params['type'] : 0;
         });
 
         this.clearDropofy();
@@ -62,7 +63,7 @@ export class PaymentContractRegisterComponent implements OnInit {
         this.initDropify();
 
         this.dropifyElement.on('dropify.afterClear', () => {
-            this.paymentSelected = undefined;
+            this.imageSelected = undefined;
         });
 
         this.onGetAllPaymentContrac();
@@ -72,35 +73,19 @@ export class PaymentContractRegisterComponent implements OnInit {
         $('.dropify-clear').trigger('click');
     }
 
-    initDropify = (payment?: Payment) => {
-        if (payment !== undefined && payment.Base) {
-            this.dropifyElement = $('.dropify').dropify({
-                defaultFile: payment.Base,
-                messages: {
-                    'default': 'Imagen',
-                    'replace': 'Imagen',
-                    'remove': 'Eliminar',
-                    'error': 'Ooops, algo paso mal'
-                },
-                error: {
-                    'fileSize': 'El tamaño maximo de la imagen permitido es de ({{ value }}).',
-                    'imageFormat': 'El tipo de archivo es incorrecto solo se permiten imagenes de tipo {{ value }}.'
-                }
-            });
-        } else {
-            this.dropifyElement = $('.dropify').dropify({
-                messages: {
-                    'default': 'Imagen',
-                    'replace': 'Imagen',
-                    'remove': 'Eliminar',
-                    'error': 'Ooops, algo paso mal'
-                },
-                error: {
-                    'fileSize': 'El tamaño maximo de la imagen permitido es de ({{ value }}).',
-                    'imageFormat': 'El tipo de archivo es incorrecto solo se permiten imagenes de tipo {{ value }}.'
-                }
-            });
-        }
+    initDropify = () => {
+        this.dropifyElement = $('.dropify').dropify({
+            messages: {
+                'default': 'Imagen',
+                'replace': 'Imagen',
+                'remove': 'Eliminar',
+                'error': 'Ooops, algo paso mal'
+            },
+            error: {
+                'fileSize': 'El tamaño maximo de la imagen permitido es de ({{ value }}).',
+                'imageFormat': 'El tipo de archivo es incorrecto solo se permiten imagenes de tipo {{ value }}.'
+            }
+        });
     }
 
     handleFileInput = (files: FileList) => {
@@ -123,7 +108,7 @@ export class PaymentContractRegisterComponent implements OnInit {
 
     getPaymentObject = () => {
         const pay = new Payment();
-        pay.Id = this.idPayment;
+        pay.Id = this.paymentSelected === undefined ? 0 : this.paymentSelected.Id;
         pay.IdContract = this.idContract;
         pay.Name = this.f['nameControl'].value;
         pay.Method = this.f['methodPayControl'].value;
@@ -137,6 +122,9 @@ export class PaymentContractRegisterComponent implements OnInit {
         if (this.imageSelected !== undefined) {
             pay.NameImage = this.imageSelected.Name;
             pay.Base = this.imageSelected.Base;
+        } else if (this.paymentSelected !== undefined && this.paymentSelected.Base !== null) {
+            pay.NameImage = this.paymentSelected.NameImage;
+            pay.Base = this.paymentSelected.Base;
         }
 
         return pay;
@@ -145,8 +133,8 @@ export class PaymentContractRegisterComponent implements OnInit {
     onResetForm = () => {
         this.paymentForm.reset('');
         this.clearDropofy();
-        this.idPayment = 0;
         this.imageSelected = undefined;
+        this.paymentSelected = undefined;
     }
 
     onSave = () => {
@@ -156,7 +144,7 @@ export class PaymentContractRegisterComponent implements OnInit {
                 this._notification.success('El pago de ha guardado correctamnete');
                 this.onGetAllPaymentContrac();
                 this.onResetForm();
-                this._shareService.amountResumeByContractEvent.emit()
+                this._shareService.amountResumeByContractEvent.emit();
             }).catch(error => {
                 this._notification.error('Ha ocurrido un erro al guardar el pago');
             });
@@ -173,7 +161,7 @@ export class PaymentContractRegisterComponent implements OnInit {
     }
 
     onEditPayment(payment: Payment) {
-        this.idPayment = payment.Id;
+        this.paymentSelected = { ...payment };
         this.f['nameControl'].setValue(payment.Name);
         this.f['methodPayControl'].setValue(payment.Method + '');
         this.f['dateControl'].setValue(payment.Date);
@@ -181,11 +169,6 @@ export class PaymentContractRegisterComponent implements OnInit {
         this.f['bankControl'].setValue(payment.Bank);
         this.f['noCheckControl'].setValue(payment.NoCheck);
         this.f['descriptionControl'].setValue(payment.Description);
-
-        if (payment.Base) {
-            this.initDropify(payment);
-        }
-
     }
 
     onDownload(payment: Payment) {
@@ -193,6 +176,20 @@ export class PaymentContractRegisterComponent implements OnInit {
         a.href = payment.Base;
         a.download = payment.NameImage;
         a.click();
+    }
+    removeImage = () => {
+        this.paymentSelected.Base = null;
+        this.paymentSelected.NameImage = null;
+    }
+
+    onDeletePayment = () => {
+        this._commonService.OnDeletePayment(this.paymentSelected.Id).toPromise()
+        .then(result => {
+            this._notification.success('El pago se ha eliminado con éxito');
+            this.onGetAllPaymentContrac();
+        }).catch(error => {
+            this._notification.error('Ha ocurrido un error al eliminar el pago');
+        });
     }
 
 }

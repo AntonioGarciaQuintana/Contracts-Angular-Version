@@ -17,7 +17,7 @@
         </tab>
         <tab *ngIf="idContract !== 0">
           <ng-template tabHeading><i class="icon-pie-chart"></i> Resumen</ng-template>
-          <app-resume-contract></app-resume-contract>
+          <app-resume-contract [idContract]="idContract"></app-resume-contract>
         </tab>
       </tabset>
     </div>

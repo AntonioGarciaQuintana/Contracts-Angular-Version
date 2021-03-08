@@ -13,13 +13,13 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo:'payment-contract'
+                redirectTo: 'payment-contract'
             },
             {
                 path: 'payment-contract',
                 component: PaymentContractComponent,
                 data: {
-                    title:'Pago de contrato'
+                    title: 'Pago de contrato'
                 }
             },
             {

@@ -16,5 +16,9 @@ namespace ContractsApplication.Service.Interfaces
         List<Payment> GetAllPaymentContract(int idContract, PaymentTypeEnum type);
 
         AmountResumeDTO GetAmountResumeByContract(int idContract, PaymentTypeEnum type);
+
+        void DeletePayment(int idPayment);
+
+        DashboardDTO GetInfoDashboard();
     }
 }

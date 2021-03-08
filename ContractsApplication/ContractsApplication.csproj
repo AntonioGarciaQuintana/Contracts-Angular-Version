@@ -233,7 +233,11 @@
     <Compile Include="Models\Contracts.cs" />
     <Compile Include="Models\DTO\AmountResumeDTO.cs" />
     <Compile Include="Models\DTO\ContractDTO.cs" />
+    <Compile Include="Models\DTO\ContractResumeDTO.cs" />
+    <Compile Include="Models\DTO\DashboardDTO.cs" />
+    <Compile Include="Models\DTO\DataChartDTO.cs" />
     <Compile Include="Models\DTO\DataTableDto.cs" />
+    <Compile Include="Models\DTO\ResumeContractDTO.cs" />
     <Compile Include="Models\Enums\PaymentMethodEnum.cs" />
     <Compile Include="Models\Enums\PaymentTypeEnum.cs" />
     <Compile Include="Models\ImageContract.cs" />

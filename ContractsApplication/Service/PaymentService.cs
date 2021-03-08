@@ -18,9 +18,18 @@ namespace ContractsApplication.Service
             this.UnitOfWork = unitWork;
         }
 
+        public void DeletePayment(int idPayment)
+        {
+          var paymentBD =  UnitOfWork.GetRepository<Payment>().GetAll().FirstOrDefault(c => c.Id == idPayment);
+            paymentBD.isDelete = true;
+            paymentBD.LastUpdate = DateTime.Now;
+            UnitOfWork.GetRepository<Payment>().Update(paymentBD);
+            UnitOfWork.SaveChanges();
+        }
+
         public List<Payment> GetAllPaymentContract(int idContract, PaymentTypeEnum type)
         {
-            var paymentList = UnitOfWork.GetRepository<Payment>().GetAll().Where(s => s.Type == type && s.IdContract == idContract).ToList();
+            var paymentList = UnitOfWork.GetRepository<Payment>().GetAll().Where(s => s.Type == type && s.IdContract == idContract && s.isDelete == false).ToList();
             return paymentList;
         }
 
@@ -38,6 +47,71 @@ namespace ContractsApplication.Service
             amountResume.TotalRestremaining = contract.Amount - amountResume.TotalPayment;
 
             return amountResume;
+        }
+
+        public DashboardDTO GetInfoDashboard()
+        {
+            var dashboard = new DashboardDTO();
+             var contractsList = UnitOfWork.GetRepository<Contracts>().GetAll().ToList();
+            var paymentsList = UnitOfWork.GetRepository<Payment>().GetAll().Where(s => s.isDelete == false).ToList();
+
+            dashboard.TotalContract = contractsList.Count;
+            dashboard.TotalActiveContract = contractsList.Where(s => s.IsDelete == false).Count();
+            dashboard.TotalPaymentContract = paymentsList.Where(p => p.Type == PaymentTypeEnum.Contract && p.isDelete == false).Count();
+            dashboard.TotalPaymentWaterContract = paymentsList.Where(p => p.Type == PaymentTypeEnum.Water && p.isDelete == false).Count();
+
+            double totalContract = 0.0;
+            paymentsList.Where(p => p.Type == PaymentTypeEnum.Contract && p.isDelete == false).ToList().ForEach(c => {
+                totalContract += c.Amount;
+            });
+            dashboard.TotalPaymentConstractCost = totalContract;
+
+            double totalWater = 0.0;
+            paymentsList.Where(p => p.Type == PaymentTypeEnum.Water && p.isDelete == false).ToList().ForEach(c => {
+                totalWater += c.Amount;
+            });
+            dashboard.TotalPaymentWaterCost = totalWater;
+
+
+            dashboard.ContractList = GetContractResume(contractsList, paymentsList);
+
+            return dashboard;
+        }
+
+        public List<ContractResumeDTO> GetContractResume(List<Contracts> contracts, List<Payment> payments)
+        {
+            var ret = new List<ContractResumeDTO>();
+
+            contracts.Where(c=>c.IsDelete == false).ToList().ForEach(c =>
+            {
+                var contratResum = new ContractResumeDTO();
+                contratResum.NameContract = c.Name;
+
+                double totalContract =0.0;
+                double totalWater = 0.0;
+
+                payments.Where(p=> p.IdContract == c.Id ).ToList().ForEach(s =>
+                {
+                    if (s.Type == PaymentTypeEnum.Contract)
+                    {
+                        totalContract += s.Amount;
+                    }
+                    if (s.Type == PaymentTypeEnum.Water)
+                    {
+                        totalWater += s.Amount;
+                    }
+                });
+
+                contratResum.TotalWather = totalWater;
+                contratResum.TotalContract = totalContract;
+                contratResum.Percentage = Math.Round((100 - (Math.Round((((c.Amount - totalContract)/ c.Amount) * 100),2))),0);
+
+                // add to list
+                ret.Add(contratResum);
+            });
+
+
+            return ret;
         }
 
         public void SaveOrUpdatePayment(Payment payment)

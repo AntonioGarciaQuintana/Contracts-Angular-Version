@@ -57,7 +57,7 @@ import { ToastrModule } from 'ngx-toastr';
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   declarations: [
     AppComponent,

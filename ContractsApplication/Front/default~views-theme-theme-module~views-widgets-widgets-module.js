@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~views-dashboard-dashboard-module~views-theme-theme-module~views-widgets-widgets-module"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~views-theme-theme-module~views-widgets-widgets-module"],{
 
 /***/ "NuRj":
 /*!*****************************************************************!*\
@@ -1716,4 +1716,4 @@
 /***/ })
 
 }]);
-//# sourceMappingURL=default~views-dashboard-dashboard-module~views-theme-theme-module~views-widgets-widgets-module.js.map
+//# sourceMappingURL=default~views-theme-theme-module~views-widgets-widgets-module.js.map
