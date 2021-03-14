@@ -28,8 +28,9 @@ export class ContractsComponent implements OnInit {
     public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
 
     contractsList: Contract[] = [];
-    idContract = 0;
-    contractName = '';
+    contractSelected: Contract;
+    // idContract = 0;
+    // contractName = '';
 
     // disable butons functionality
     @Input() disableEdit = false;
@@ -65,7 +66,6 @@ export class ContractsComponent implements OnInit {
                 }
             ).catch(error => {
                 this.loading = false;
-                console.log(error);
             });
     }
 
@@ -92,11 +92,11 @@ export class ContractsComponent implements OnInit {
     }
     goToPaymentRegister(contract: Contract) {
         this._router.navigate(['/payment/payment-contract-register',
-            { id: contract.Id, name: contract.Name, type: 0 }], { relativeTo: this._route });
+            { id: contract.Id, type: 0 }], { relativeTo: this._route });
     }
     goToWaterPayment = (contract: Contract) => {
         this._router.navigate(['/payment/payment-contract-register',
-            { id: contract.Id, name: contract.Name, type: 1 }], { relativeTo: this._route });
+            { id: contract.Id, type: 1 }], { relativeTo: this._route });
     }
 
     onCleanFilter = () => {
@@ -107,7 +107,7 @@ export class ContractsComponent implements OnInit {
     }
 
     onCancel = () => {
-        this._commonService.cancelContract(this.idContract).toPromise()
+        this._commonService.cancelContract(this.contractSelected.Id).toPromise()
             .then(result => {
                 this.firstPage();
                 this._notification.success('La contracto se ha cancelado correctamente');
@@ -115,6 +115,17 @@ export class ContractsComponent implements OnInit {
                 console.error(error);
                 this._notification.error('Ha ocurrido un error al cancelar el contrato');
             });
+    }
+
+    onFinalize = () => {
+        this._commonService.finalizeContract(this.contractSelected.Id).toPromise()
+        .then(result => {
+            this.firstPage();
+            this._notification.success('La contracto se ha finalizado correctamente');
+        }).catch(error => {
+            console.error(error);
+            this._notification.error('Ha ocurrido un error al finalizar el contrato');
+        });
     }
 
 }

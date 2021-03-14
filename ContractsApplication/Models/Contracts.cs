@@ -56,5 +56,6 @@ namespace ContractsApplication.Models
         public virtual List<ImageContract> Images { get; set; }
         public virtual List<Payment> Payments { get; set; }
         public bool IsDelete { get; set; }
+        public bool IsFinalize { get; set; }
     }
 }

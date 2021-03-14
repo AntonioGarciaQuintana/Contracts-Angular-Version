@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { defineLocale, esLocale } from "ngx-bootstrap/chronos";
 import { BsLocaleService } from "ngx-bootstrap/datepicker";
 import { pathToFileURL } from "url";
+import { Contract } from "../../model/Contract";
 import { ImageDto } from "../../model/Image";
 import { Payment } from "../../model/payment";
 import { commonService } from "../../Services/common-service.service";
@@ -23,7 +24,8 @@ export class PaymentContractRegisterComponent implements OnInit {
     idContract = 0;
     imageSelected: ImageDto;
     paymentList: Payment[] = [];
-    NameContract = '';
+
+    contract:Contract;
 
     @Input() PaymentType = 0;
 
@@ -31,7 +33,6 @@ export class PaymentContractRegisterComponent implements OnInit {
     constructor(
         private _commonService: commonService,
         private _notification: NotificationService,
-        private _router: Router,
         private _route: ActivatedRoute,
         private _localeService: BsLocaleService,
         private _shareService: SharedService) {
@@ -54,8 +55,10 @@ export class PaymentContractRegisterComponent implements OnInit {
 
         this._route.params.subscribe(params => {
             this.idContract = params['id'] !== undefined ? +params['id'] : 0;
-            this.NameContract = params['name'] !== undefined ? params['name'] : '';
             this.PaymentType = params['type'] !== undefined ? +params['type'] : 0;
+            if(this.idContract) {
+                this.getContractById(this.idContract);
+            }
         });
 
         this.clearDropofy();
@@ -85,6 +88,13 @@ export class PaymentContractRegisterComponent implements OnInit {
                 'fileSize': 'El tamaño maximo de la imagen permitido es de ({{ value }}).',
                 'imageFormat': 'El tipo de archivo es incorrecto solo se permiten imagenes de tipo {{ value }}.'
             }
+        });
+    }
+
+    getContractById = (id: number) => {
+        this._commonService.getContract(id).toPromise()
+        .then(result => {
+            this.contract = result;
         });
     }
 

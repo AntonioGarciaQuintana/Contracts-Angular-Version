@@ -399,3 +399,4 @@ C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\Contrac
 C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.changerelationalimageContract.resources
 C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.addPaymentContract.resources
 C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.changeTypeAmountColumn.resources
+C:\git projects\Contracts-Angular-Version\ContractsApplication\obj\Debug\ContractsApplication.Migrations.AddFinalizeColumn.resources

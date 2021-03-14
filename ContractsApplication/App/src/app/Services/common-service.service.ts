@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class commonService {
 
-    urlContracts = environment.contracts;
+    urlContracts =  environment.contracts;
     urlPayment = environment.payment;
 
     constructor(private http: HttpClient) { }
@@ -30,6 +30,10 @@ export class commonService {
 
     cancelContract(id: number) {
         return this.http.delete<void>(this.urlContracts + '/CancelContract' + '/' + id);
+    }
+
+    finalizeContract(id: number) {
+        return this.http.delete<void>(this.urlContracts + '/FinalizeContract' + '/' + id);
     }
 
     onSaveImageContract(obj: any) {

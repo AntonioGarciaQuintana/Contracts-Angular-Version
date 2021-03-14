@@ -8,4 +8,5 @@ export class Contract {
     EndDate: String;
     Phone: string;
     Description: string;
+    IsFinalize: boolean;
 }

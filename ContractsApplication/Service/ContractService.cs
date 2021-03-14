@@ -173,5 +173,14 @@ namespace ContractsApplication.Service
 
             UnitOfWork.SaveChanges();
         }
+
+        public void FinalizeContract(int id)
+        {
+            var contract = UnitOfWork.GetRepository<Contracts>().GetAll().FirstOrDefault(c => c.Id == id);
+            contract.IsFinalize = !contract.IsFinalize;
+            contract.LastUpdate = DateTime.Now;
+            UnitOfWork.GetRepository<Contracts>().Update(contract);
+            UnitOfWork.SaveChanges();
+        }
     }
 }

@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
         this.totalCostContrat = result.TotalPaymentConstractCost;
         this.totalCostWater = result.TotalPaymentWaterCost;
         this.customerDetail = result.ContractList;
-        console.log(result);
       });
   }
 }

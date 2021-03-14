@@ -67,7 +67,13 @@ namespace ContractsApplication.Controllers
         public ActionResult CancelContract(int id) {
             ContractService.DeleteContract(id);
             return Json(true);
+        }
 
+        [HttpDelete]
+        public ActionResult FinalizeContract(int id)
+        {
+            ContractService.FinalizeContract(id);
+            return Json(true);
         }
 
         [HttpGet]

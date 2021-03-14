@@ -1,8 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <ngx-loading [show]="loading"
-            [config]="{animationType: ngxLoadingAnimationTypes.wanderingCubes, primaryColour: PrimaryRed, secondaryColour: SecondaryBlue, backdropBorderRadius: '3px'}"
-            [template]="loadingTemplate"></ngx-loading>
+            [config]="{animationType: ngxLoadingAnimationTypes.wanderingCubes, primaryColour: PrimaryRed, secondaryColour: SecondaryBlue, backdropBorderRadius: '3px'}"></ngx-loading>
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify"></i> Lista de contratos
@@ -47,7 +46,8 @@
                             <th>Nombre</th>
                             <th>Ciclo</th>
                             <th>No. Hectáreas</th>
-                            <th>Precio</th>
+                            <th>Contrato por:</th>
+                            <th>Finalizado?</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -59,23 +59,31 @@
                             <td>{{contract.StartDate}} al {{contract.EndDate}}</td>
                             <td>{{contract.Acres}}</td>
                             <td>{{contract.Amount | currency}}</td>
+                            <td>{{contract.IsFinalize ? 'SI' : 'No'}}</td>
                             <td>
-                                <button *ngIf="!disableCancel" type="button" class="btn btn-info active"
-                                    tooltip="Click para cancelar el contrato" aria-pressed="true"
-                                    (click)="dangerModal.show();idContract=contract.Id;contractName=contract.Name;"><i
-                                        class="fa fa-trash-o"></i></button>
+
                                 <button *ngIf="!disableEdit" type="button" class="btn btn-info active"
                                     tooltip="Click para editar el contrato" aria-pressed="true"
                                     (click)="goToRegister(contract.Id)"><i class="fa fa-pencil"></i></button>
+                                <button *ngIf="!disableEdit" type="button"
+                                    class="btn btn-info active" tooltip="Click para {{contract.IsFinalize ? 'Activar' : 'Finalizar'}} el contrato"
+                                    aria-pressed="true"
+                                    (click)="FinalizeModal.show();contractSelected=contract;"><i
+                                        class="fa fa-check-circle"></i></button>
                                 <button *ngIf="!disablePamentContract" type="button" class="btn btn-info active"
                                     tooltip="Click para registar pago renta" aria-pressed="true"
                                     (click)="goToPaymentRegister(contract)"><i class="fa cil-money "></i></button>
+                                <button *ngIf="!disableCancel && !contract.IsFinalize" type="button"
+                                    class="btn btn-info active" tooltip="Click para cancelar el contrato"
+                                    aria-pressed="true"
+                                    (click)="dangerModal.show();contractSelected=contract;"><i
+                                        class="fa fa-trash-o"></i></button>
                                 <button *ngIf="!disablePamentWater" type="button" class="btn btn-info active"
                                     tooltip="Click para registar pago de agua" aria-pressed="true"
                                     (click)="goToWaterPayment(contract)"><i class="fa cil-pool active"></i></button>
-                                
 
-                                
+
+
                                 <!-- <span class="badge badge-success">Active</span> -->
                             </td>
                         </tr>
@@ -100,11 +108,34 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h5>Está seguro que desea cancelar el Contrato de {{contractName}}?</h5>
+                <h5>Está seguro que desea cancelar el Contrato de {{contractSelected?.Name}}?</h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Cancelar</button>
                 <button type="button" class="btn btn-danger" (click)="onCancel();dangerModal.hide()">&nbsp;&nbsp;Sí
+                    &nbsp;&nbsp;</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div bsModal #FinalizeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-warning" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Mensaje del sistema</h4>
+                <button type="button" class="close" (click)="FinalizeModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Está seguro que desea {{contractSelected?.IsFinalize ? 'Activar' : 'Finalizar'}} el Contrato de {{contractSelected?.Name}}?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="FinalizeModal.hide()">Cancelar</button>
+                <button type="button" class="btn btn-info active"
+                    (click)="onFinalize();FinalizeModal.hide()">&nbsp;&nbsp;Sí
                     &nbsp;&nbsp;</button>
             </div>
         </div><!-- /.modal-content -->

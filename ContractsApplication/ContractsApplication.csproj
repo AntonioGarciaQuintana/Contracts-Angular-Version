@@ -229,6 +229,10 @@
     <Compile Include="Migrations\202103030107235_changeTypeAmountColumn.designer.cs">
       <DependentUpon>202103030107235_changeTypeAmountColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103132101576_AddFinalizeColumn.cs" />
+    <Compile Include="Migrations\202103132101576_AddFinalizeColumn.designer.cs">
+      <DependentUpon>202103132101576_AddFinalizeColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contracts.cs" />
     <Compile Include="Models\DTO\AmountResumeDTO.cs" />
@@ -377,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103030107235_changeTypeAmountColumn.resx">
       <DependentUpon>202103030107235_changeTypeAmountColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103132101576_AddFinalizeColumn.resx">
+      <DependentUpon>202103132101576_AddFinalizeColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

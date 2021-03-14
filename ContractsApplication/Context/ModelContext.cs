@@ -18,6 +18,7 @@ namespace ContractsApplication.Context
 
         public ModelContext() : base(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString)
         {
+            Database.SetInitializer<ModelContext>(new CreateDatabaseIfNotExists<ModelContext>());
         }
 
         public new void Dispose()
