@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="city">Metodo de pago</label>
-                            <select class="form-control" id="" [formControl]="f.methodPayControl">
+                            <select class="form-control" id="sltTypePayment" [formControl]="f.methodPayControl">
                                 <option value="">Seleccione un metodo de pago</option>
                                 <option value="0">Cheque</option>
                                 <option value="1">Efectivo</option>
@@ -68,7 +68,7 @@
                                     #dp="bsDatepicker" placeholder="Seleccione una fecha" formControlName="dateControl"
                                     class="form-control" bsDatepicker>
                                 <span class="input-group-append">
-                                    <button class="btn btn-success" (click)="dp.toggle()"
+                                    <button class="btn btn-success" id="startDatePayment" (click)="dp.toggle()"
                                         [attr.aria-expanded]="dp.isOpen"><i class="fa fa-calendar"
                                             aria-hidden="true"></i></button>
                                 </span>
@@ -78,18 +78,18 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="postal-code">Monto</label>
-                            <input type="text" class="form-control" id="postal-code" appOnlyNumbers
+                            <input type="text" class="form-control" id="amount" appOnlyNumbers
                                 formControlName="amountControl" placeholder="">
                         </div>
                         <div class="form-group col-sm-6" *ngIf="f.methodPayControl.value === '0'">
                             <label for="city">Banco</label>
-                            <input type="text" class="form-control" id="vat" maxlength="100"
+                            <input type="text" class="form-control" id="bank" maxlength="100"
                                 formControlName="bankControl" placeholder="">
                         </div>
                     </div>
                     <div class="form-group" *ngIf="f.methodPayControl.value === '0'">
                         <label for="vat">No. Cheque</label>
-                        <input type="text" class="form-control" id="vat2" maxlength="100"
+                        <input type="text" class="form-control" id="moneyCheck" maxlength="100"
                             formControlName="noCheckControl" placeholder="">
                     </div>
                     <div class="form-group">
@@ -103,7 +103,7 @@
                             <input #fileInput type="file" (change)="handleFileInput($event.target.files)"
                                 class="dropify" data-max-file-size="20M" (click)="fileInput.value = null"
                                 data-allowed-file-extensions="png jpg bmp jpeg" data-show-loader="false"
-                                data-height="150" />
+                                data-height="150" id="image" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -114,11 +114,11 @@
                 </form>
             </div>
             <div class="card-footer">
-                <button *ngIf="!contract?.IsFinalize" type="submit" class="btn btn-primary float-right" style="margin-left: 9px"
+                <button *ngIf="!contract?.IsFinalize" type="submit" id="btnSavePayment" class="btn btn-primary float-right" style="margin-left: 9px"
                     tooltip="Click para guardar los cambios del pago" (click)="onSave()"[disabled]="paymentForm.invalid"><i
                         class="fa fa-dot-circle-o"></i>
                     Guardar</button>
-                <button *ngIf="!contract?.IsFinalize" type="reset" class="btn btn-danger float-right"
+                <button *ngIf="!contract?.IsFinalize" type="reset" id="btnCancelPayment" class="btn btn-danger float-right"
                     tooltip="Click para cancelar los cambios del pago" (click)="onResetForm()"><i class="fa fa-ban"></i>
                     Cancelar</button>
             </div>
@@ -140,8 +140,8 @@
                 <h5>Está seguro que desea eliminar el registro de pago {{paymentSelected?.Name}} del contrato?</h5>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Cancelar</button>
-                <button type="button" class="btn btn-danger" (click)="onDeletePayment();dangerModal.hide()">&nbsp;&nbsp;Sí
+                <button type="button" class="btn btn-secondary" id="btnMocalCancel" (click)="dangerModal.hide()">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="btnModalAcept" (click)="onDeletePayment();dangerModal.hide()">&nbsp;&nbsp;Sí
                     &nbsp;&nbsp;</button>
             </div>
         </div><!-- /.modal-content -->

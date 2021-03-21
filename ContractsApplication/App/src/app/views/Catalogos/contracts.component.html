@@ -1,7 +1,8 @@
 <div class="row">
     <div class="col-lg-12">
         <ngx-loading [show]="loading"
-            [config]="{animationType: ngxLoadingAnimationTypes.wanderingCubes, primaryColour: PrimaryRed, secondaryColour: SecondaryBlue, backdropBorderRadius: '3px'}"></ngx-loading>
+            [config]="{animationType: ngxLoadingAnimationTypes.wanderingCubes, primaryColour: PrimaryRed, secondaryColour: SecondaryBlue, backdropBorderRadius: '3px'}">
+        </ngx-loading>
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify"></i> Lista de contratos
@@ -16,7 +17,7 @@
                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                             class="fa fa-search"></i></span>
                                 </div><input class="form-control ng-untouched ng-pristine ng-valid"
-                                    placeholder="Filtrar por Nombre o ID" type="text" maxlength="100"
+                                    placeholder="Filtrar por Nombre o ID" id="txtFilter" type="text" maxlength="100"
                                     [(ngModel)]="filters.search" (keyup.enter)="firstPage()">
                             </div>
 
@@ -24,16 +25,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-info active" tooltip="Click para guardar un nuevo contrato"
+                    <div class="col-md-12">
+                        <button type="button" id="btnNew" class="btn btn-info active" tooltip="Click para guardar un nuevo contrato"
                             aria-pressed="true" (click)="goToRegister()"><i class="fa fa-plus-square-o"></i> &nbsp;
                             Nuevo</button>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="button" (click)="firstPage();" tooltip="Click para filtrar"
+                        <button type="button" id="btnFilter" (click)="firstPage();" tooltip="Click para filtrar"
                             class="btn btn-info active float-right" aria-pressed="true" style="margin-left: 9px;"><i
                                 class="fa fa-hand-o-right"></i>&nbsp;Filtrar</button>
-                        <button type="button" class="btn btn-info active float-right"
+                        <button type="button" id="btnClean" class="btn btn-info active float-right"
                             tooltip="Click para limpiar los campos de busqueda" (click)="onCleanFilter();"
                             aria-pressed="true"><i class="fa fa-filter"></i>&nbsp;Limpiar</button>
                     </div>
@@ -44,10 +43,10 @@
                         <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>Ciclo</th>
-                            <th>No. Hectáreas</th>
-                            <th>Contrato por:</th>
-                            <th>Finalizado?</th>
+                            <th class="d-none d-lg-table-cell">Ciclo</th>
+                            <th class="d-none d-lg-table-cell">No. Hectáreas</th>
+                            <th class="d-none d-lg-table-cell">Contrato por:</th>
+                            <th class="d-none d-lg-table-cell">Finalizado?</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -56,29 +55,27 @@
                             *ngFor="let contract of contractsList | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalElements }">
                             <td>{{contract.Id}}</td>
                             <td>{{contract.Name}}</td>
-                            <td>{{contract.StartDate}} al {{contract.EndDate}}</td>
-                            <td>{{contract.Acres}}</td>
-                            <td>{{contract.Amount | currency}}</td>
-                            <td>{{contract.IsFinalize ? 'SI' : 'No'}}</td>
+                            <td class="d-none d-lg-table-cell">{{contract.StartDate}} al {{contract.EndDate}}</td>
+                            <td class="d-none d-lg-table-cell">{{contract.Acres}}</td>
+                            <td class="d-none d-lg-table-cell">{{contract.Amount | currency}}</td>
+                            <td class="d-none d-lg-table-cell">{{contract.IsFinalize ? 'SI' : 'No'}}</td>
                             <td>
 
-                                <button *ngIf="!disableEdit" type="button" class="btn btn-info active"
+                                <button *ngIf="!disableEdit" id="btnEdit" type="button" class="btn btn-info active"
                                     tooltip="Click para editar el contrato" aria-pressed="true"
                                     (click)="goToRegister(contract.Id)"><i class="fa fa-pencil"></i></button>
-                                <button *ngIf="!disableEdit" type="button"
-                                    class="btn btn-info active" tooltip="Click para {{contract.IsFinalize ? 'Activar' : 'Finalizar'}} el contrato"
-                                    aria-pressed="true"
-                                    (click)="FinalizeModal.show();contractSelected=contract;"><i
+                                <button *ngIf="!disableEdit" id="btnEdit" type="button" class="btn btn-info active"
+                                    tooltip="Click para {{contract.IsFinalize ? 'Activar' : 'Finalizar'}} el contrato"
+                                    aria-pressed="true" (click)="FinalizeModal.show();contractSelected=contract;"><i
                                         class="fa fa-check-circle"></i></button>
-                                <button *ngIf="!disablePamentContract" type="button" class="btn btn-info active"
+                                <button *ngIf="!disablePamentContract" id="btnPaymentContract" type="button" class="btn btn-info active"
                                     tooltip="Click para registar pago renta" aria-pressed="true"
                                     (click)="goToPaymentRegister(contract)"><i class="fa cil-money "></i></button>
-                                <button *ngIf="!disableCancel && !contract.IsFinalize" type="button"
+                                <button *ngIf="!disableCancel && !contract.IsFinalize" id="btnCancelContract" type="button"
                                     class="btn btn-info active" tooltip="Click para cancelar el contrato"
-                                    aria-pressed="true"
-                                    (click)="dangerModal.show();contractSelected=contract;"><i
+                                    aria-pressed="true" (click)="dangerModal.show();contractSelected=contract;"><i
                                         class="fa fa-trash-o"></i></button>
-                                <button *ngIf="!disablePamentWater" type="button" class="btn btn-info active"
+                                <button *ngIf="!disablePamentWater" id="btnPaymentWater" type="button" class="btn btn-info active"
                                     tooltip="Click para registar pago de agua" aria-pressed="true"
                                     (click)="goToWaterPayment(contract)"><i class="fa cil-pool active"></i></button>
 
@@ -111,8 +108,8 @@
                 <h5>Está seguro que desea cancelar el Contrato de {{contractSelected?.Name}}?</h5>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Cancelar</button>
-                <button type="button" class="btn btn-danger" (click)="onCancel();dangerModal.hide()">&nbsp;&nbsp;Sí
+                <button type="button" class="btn btn-secondary" id="btnModalCancel" (click)="dangerModal.hide()">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="btnModalAccept" (click)="onCancel();dangerModal.hide()">&nbsp;&nbsp;Sí
                     &nbsp;&nbsp;</button>
             </div>
         </div><!-- /.modal-content -->
@@ -130,11 +127,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h5>Está seguro que desea {{contractSelected?.IsFinalize ? 'Activar' : 'Finalizar'}} el Contrato de {{contractSelected?.Name}}?</h5>
+                <h5>Está seguro que desea {{contractSelected?.IsFinalize ? 'Activar' : 'Finalizar'}} el Contrato de
+                    {{contractSelected?.Name}}?</h5>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="FinalizeModal.hide()">Cancelar</button>
-                <button type="button" class="btn btn-info active"
+                <button type="button" class="btn btn-secondary" id="btnModalFinalizecancel" (click)="FinalizeModal.hide()">Cancelar</button>
+                <button type="button" class="btn btn-info active" id="btnModalFinalizeAcept"
                     (click)="onFinalize();FinalizeModal.hide()">&nbsp;&nbsp;Sí
                     &nbsp;&nbsp;</button>
             </div>

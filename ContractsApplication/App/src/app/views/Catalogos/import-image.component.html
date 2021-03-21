@@ -3,11 +3,11 @@
     <label for="nf-price">Importar imagen para el contrato</label><br>
     <input #fileInput type="file" (change)="handleFileInput($event.target.files)" class="dropify"
       data-max-file-size="20M" (click)="fileInput.value = null" data-allowed-file-extensions="png jpg bmp jpeg"
-      data-show-loader="false" data-height="290" />
+      data-show-loader="false" data-height="290" id="inputImage" />
     <br />
     <div class="row">
       <div class="col-md-12">
-        <button type="button" (click)="importImage();" class="btn btn-success active float-right"
+        <button type="button" (click)="importImage();" id="btnImportImage" class="btn btn-success active float-right"
           tooltip="Click guardar la imagen en el contrato" aria-pressed="true" style="margin-left: 9px;"><i
             class="fa cil-cloud-upload"></i>&nbsp;Importar
           Imagen</button>
@@ -34,10 +34,10 @@
               <td>{{image.Id}}</td>
               <td>{{image.Name}}</td>
               <td>
-                <button type="button" class="btn btn-danger active" aria-pressed="true"
+                <button type="button" id="btnDeleteImage" class="btn btn-danger active" aria-pressed="true"
                   (click)="dangerModal.show();idImage=image.Id;imageName=image.Name;"
                   tooltip="Click para eliminar la imagen"><i class="fa fa-trash-o"></i></button>
-                <button type="button" class="btn btn-info active" aria-pressed="true"
+                <button type="button" id="btndownload" class="btn btn-info active" aria-pressed="true"
                   tooltip="Click para descargar la imagen" (click)="onDownload(image)"><i
                     class="fa cil-cloud-download"></i></button>
               </td>
@@ -63,8 +63,8 @@
         <h5>Está seguro que desea eliminar la imagen {{imageName}} del contrato?</h5>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Cancelar</button>
-        <button type="button" class="btn btn-danger" (click)="onDeleteImage();dangerModal.hide()">&nbsp;&nbsp;Sí
+        <button type="button" class="btn btn-secondary" id="btnModalCancelImage" (click)="dangerModal.hide()">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="btnModalAcceptImage" (click)="onDeleteImage();dangerModal.hide()">&nbsp;&nbsp;Sí
           &nbsp;&nbsp;</button>
       </div>
     </div><!-- /.modal-content -->
